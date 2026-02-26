@@ -12,7 +12,8 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
-import { HomeScreen, AboutScreen } from "@/screens/";
+import "./i18n/index";
+import { HomeScreen, AboutScreen } from "@/screens/index.ts";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

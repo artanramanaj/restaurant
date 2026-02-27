@@ -1,9 +1,10 @@
 import { Outlet } from "react-router-dom";
-import { Header } from "@/components/index";
+import { Header, TopBar } from "@/components/index";
 function App() {
   return (
     <>
       <main>
+        <TopBar />
         <Header />
         <Outlet />
       </main>

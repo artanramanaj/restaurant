@@ -79,6 +79,9 @@
   padding-inline: 1rem;
   max-width: 1280px;
 }
+button {
+  cursor: pointer;
+}
 h1 {
   font-weight: 700;
 }

@@ -1,6 +1,10 @@
-import React from "react";
-
+import { Banner, Order , MenuPanel} from "@/components/index";
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <div>
+      <Banner />
+      <Order />
+    </div>
+  );
 };
 export default Home;

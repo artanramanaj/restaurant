@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-
+import albFlag from "@/assets/images/alb-flag.png";
+import ukFlag from "@/assets/images/uk-flag.png";
 const Navigation = () => {
   const { t, i18n } = useTranslation();
   console.log("check the t", t);
@@ -28,9 +29,16 @@ const Navigation = () => {
         </li>
       </ul>
 
-      <div>
-        <button onClick={() => changeLanguage("en")}>EN</button>
-        <button onClick={() => changeLanguage("sq")}>SQ</button>
+      <div className="px-4 py-1 bg-white rounded flex items-center">
+        {i18n.language === "en" ? (
+          <button onClick={() => changeLanguage("sq")}>
+            <img src={albFlag} alt="albanian" />
+          </button>
+        ) : (
+          <button onClick={() => changeLanguage("en")}>
+            <img src={ukFlag} alt="english" />
+          </button>
+        )}
       </div>
     </nav>
   );

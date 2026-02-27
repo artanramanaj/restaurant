@@ -10,7 +10,7 @@ const ProductSearch = () => {
         placeholder={t(`productSearch.search`)}
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="w-full px-4 py-4 border border-gray-300 rounded-lg 
+        className="w-full px-4 py-4 border border-gray-300 rounded-3xl
                    focus:outline-none focus:ring-1 focus:ring-secondary"
       />
     </div>

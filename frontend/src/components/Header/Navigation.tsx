@@ -10,7 +10,7 @@ const Navigation = () => {
   };
 
   return (
-    <nav className=" flex justify-between gap-4 bg-primary rounded-lg p-4 text-white">
+    <nav className=" flex justify-between gap-4 bg-primary rounded-3xl p-4 text-white">
       <ul className="flex items-center gap-4">
         <li>
           <NavLink to="/">{t("nav.home")}</NavLink>

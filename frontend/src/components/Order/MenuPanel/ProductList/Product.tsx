@@ -1,3 +1,4 @@
+import { AddToCartModal } from "@/components/index";
 type ProductProps = {
   id: number;
   productImage: string;
@@ -24,6 +25,7 @@ const Product = ({
       <button className="bg-white text-primary hover:bg-primary hover:text-white rounded-full px-4 mr-1 mb-1 py-2 font-medium border border-primary transition-colors">
         Shto ne shporte
       </button>
+      <AddToCartModal />
     </div>
   );
 };

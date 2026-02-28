@@ -22,7 +22,7 @@ const CategoryFilter = () => {
         <button
           key={index}
           onClick={() => setActive(c)}
-          className={`rounded-full px-4 mr-1 mb-1 py-2 font-medium border border-primary transition-colors
+          className={`rounded-full px-4 mr-1 mb-1 py-2 font-medium border border-primary transition-colors uppercase
             ${
               active === c
                 ? "bg-primary text-white"

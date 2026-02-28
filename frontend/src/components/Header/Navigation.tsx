@@ -4,7 +4,6 @@ import albFlag from "@/assets/images/alb-flag.png";
 import ukFlag from "@/assets/images/uk-flag.png";
 const Navigation = () => {
   const { t, i18n } = useTranslation();
-  console.log("check the t", t);
   const changeLanguage = (lang: string) => {
     i18n.changeLanguage(lang);
   };

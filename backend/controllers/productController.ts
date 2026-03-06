@@ -5,8 +5,26 @@ import { customError } from "../middleware/errorHandler.js";
 import asyncHandler from "express-async-handler";
 
 export const getProducts = asyncHandler(async (req: Request, res: Response) => {
-  const products = await Product.find({});
-  res.status(StatusCodes.OK).json(products);
+  const limit = Number(req.query.limit) || 3;
+  const page = Number(req.query.page) || 1;
+  const skip = (page - 1) * limit;
+  const category = (req.query.category as string) || "all";
+
+  const query = category === "all" ? {} : { category };
+
+  const [products, total] = await Promise.all([
+    Product.find(query).limit(limit).skip(skip).populate("category"),
+    Product.countDocuments(query),
+  ]);
+
+  res.status(StatusCodes.OK).json({
+    products,
+    pagination: {
+      total,
+      page,
+      pages: Math.ceil(total / limit),
+    },
+  });
 });
 
 export const getProduct = asyncHandler(async (req: Request, res: Response) => {

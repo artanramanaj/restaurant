@@ -14,6 +14,8 @@ import "./index.css";
 import App from "./App.tsx";
 import "./i18n/index";
 import { HomeScreen, AboutScreen } from "@/screens/index.ts";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,7 +27,9 @@ const router = createBrowserRouter(
 );
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
-    <ToastContainer />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+      <ToastContainer />
+    </Provider>
   </StrictMode>,
 );

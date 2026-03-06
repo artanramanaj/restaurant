@@ -17,8 +17,8 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Connection failed:", err));
 
-app.use("/categories", categoryRouter);
-app.use("/products", productRouter);
+app.use("/api/categories", categoryRouter);
+app.use("/api/products", productRouter);
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello from TypeScript + Express!");
 });

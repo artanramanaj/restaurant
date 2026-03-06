@@ -5,7 +5,7 @@ const ProductList = () => {
   const { data, isLoading, isError } = useGetProductsQuery({
     category: "all",
     page: 1,
-    limit: 6,
+    limit: 3,
   });
 
   if (isLoading) return <p>Loading...</p>;

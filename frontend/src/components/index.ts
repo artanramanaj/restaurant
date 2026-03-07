@@ -1,6 +1,9 @@
 export { default as Header } from "./Header";
 export { default as Navigation } from "./Header/Navigation";
 export { default as TopBar } from "./TopBar";
+export { default as Spinner } from "./Spinner";
+export { default as Variant } from "./Variant";
+export { default as Paggination } from "./Paggination";
 export { default as Banner } from "./Banner";
 export { default as Order } from "./Order";
 export { default as MenuPanel } from "./Order/MenuPanel";

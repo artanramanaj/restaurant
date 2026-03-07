@@ -1,24 +1,45 @@
 import { Product } from "@/components/index";
 import { useGetProductsQuery } from "@/store/productsApiSlice";
-
-const ProductList = () => {
+import { Variant, Spinner } from "@/components";
+import { Paggination } from "@/components/index";
+import { useState } from "react";
+type Props = {
+  activeCategory: string;
+};
+const ProductList = ({ activeCategory }: Props) => {
+  const [page, setPage] = useState<number>(1);
+  const [limit, setLimit] = useState<number>(3);
   const { data, isLoading, isError } = useGetProductsQuery({
-    category: "all",
-    page: 1,
-    limit: 3,
+    category: activeCategory,
+    page,
+    limit,
   });
 
-  if (isLoading) return <p>Loading...</p>;
-  if (isError || !data) return <p>Something went wrong!</p>;
+  const changePage = (newPage: number) => {
+    setPage(newPage);
+  };
 
-  console.log("products", data.products);
+  if (isLoading) return <Spinner />;
+  if (isError || !data || data.products.length === 0)
+    return <Variant message="No Products" variant="danger" />;
+
+  console.log("products", data);
 
   return (
-    <div className="grid grid-cols-2 gap-y-5 md:gap-y-10 gap-x-10 md:gap-x-20 md:grid-cols-3">
-      {data.products.map((product: any) => (
-        <Product key={product._id} {...product} />
-      ))}
-    </div>
+    <>
+      <div className="grid grid-cols-2 gap-y-5 md:gap-y-10 gap-x-10 md:gap-x-20 md:grid-cols-3">
+        {data.products.map((product: any) => (
+          <Product key={product._id} {...product} />
+        ))}
+      </div>
+      <Paggination
+        page={page}
+        limit={limit}
+        pages={data.pagination.pages}
+        newPage={changePage}
+        productLength={data.products.length}
+      />
+    </>
   );
 };
 

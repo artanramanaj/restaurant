@@ -37,7 +37,6 @@ const resources = {
         items: {
           "69a99d86d8a704713f4809cc": "Chicken Burger",
           "69a9a71ea504b4055f6cf02c": "Beef Burger",
-          "69aacd7f683838f5b0d54251": "Margherita Pizza",
           "69aacd89683838f5b0d54253": "Tuna Pizza",
           "69aae9c92f6c0230bf89013b": "Cheese Burger",
           "69aae9d62f6c0230bf89013d": "Egg Burger",
@@ -90,7 +89,6 @@ const resources = {
         items: {
           "69a99d86d8a704713f4809cc": "Burger Pule",
           "69a9a71ea504b4055f6cf02c": "Burger Viçi",
-          "69aacd7f683838f5b0d54251": "Pica Margherita",
           "69aacd89683838f5b0d54253": "Pica Tuna",
           "69aae9c92f6c0230bf89013b": "Burger Djathi",
           "69aae9d62f6c0230bf89013d": "Burger Vezë",

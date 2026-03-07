@@ -9,7 +9,7 @@ export const getProducts = asyncHandler(async (req: Request, res: Response) => {
   const page = Number(req.query.page) || 1;
   const skip = (page - 1) * limit;
   const category = (req.query.category as string) || "all";
-
+  console.log("check the category", category);
   const query = category === "all" ? {} : { category };
 
   const [products, total] = await Promise.all([

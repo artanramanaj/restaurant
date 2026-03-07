@@ -17,7 +17,7 @@ const Paggination = ({
     <div className="flex items-center gap-2">
       <button
         disabled={page === 1}
-        className="bg-primary border-2 border-primary rounded-2xl px-6 p-2 text-white"
+        className={`${page === 1 ? "cursor-not-allowed" : "cursor-pointer"} bg-primary border-2 border-primary rounded-2xl px-6 p-2 text-white`}
         onClick={() => newPage(page - 1)}
       >
         Previous
@@ -25,8 +25,8 @@ const Paggination = ({
 
       {Array.from({ length: pages }).map((u, i) => (
         <button
-          className={`${page === i + 1 ? "text-primary !font-bold" : "text-black"}`}
-          onClick={() => newPage(i + 1)}
+          className={`${page === i + 1 ? "text-primary !font-bold" : "text-black"} rounded-full bg-transparent border-2 border-primary p-2 px-4`}
+          onClick={() => newPage(page + 1)}
           key={i}
         >
           {i + 1}

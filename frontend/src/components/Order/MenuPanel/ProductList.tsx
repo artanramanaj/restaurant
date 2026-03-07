@@ -2,7 +2,7 @@ import { Product } from "@/components/index";
 import { useGetProductsQuery } from "@/store/productsApiSlice";
 import { Variant, Spinner } from "@/components";
 import { Paggination } from "@/components/index";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 type Props = {
   activeCategory: string;
 };
@@ -18,7 +18,9 @@ const ProductList = ({ activeCategory }: Props) => {
   const changePage = (newPage: number) => {
     setPage(newPage);
   };
-
+  useEffect(() => {
+    setPage(1);
+  }, [activeCategory]);
   if (isLoading) return <Spinner />;
   if (isError || !data || data.products.length === 0)
     return <Variant message="No Products" variant="danger" />;

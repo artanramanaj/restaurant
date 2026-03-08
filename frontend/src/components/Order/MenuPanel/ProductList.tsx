@@ -8,32 +8,37 @@ import useDebounce from "@/hooks/useDebounce";
 type Props = {
   activeCategory: string;
   search: string;
+  isTyping: boolean;
+  setIsTyping: (value: boolean) => void;
 };
-const ProductList = ({ activeCategory, search }: Props) => {
+const ProductList = ({
+  activeCategory,
+  search,
+  isTyping,
+  setIsTyping,
+}: Props) => {
   const [page, setPage] = useState<number>(1);
-  const [limit, setLimit] = useState<number>(8);
+  const [limit, setLimit] = useState<number>(3);
+  const debouncedSearch = useDebounce(search, 800);
   const { data, isLoading, isError } = useGetProductsQuery({
-    search,
+    search: debouncedSearch,
     category: activeCategory,
     page,
     limit,
   });
+
+  useEffect(() => {
+    setIsTyping(false);
+  }, [debouncedSearch]);
 
   const changePage = (newPage: number) => {
     setPage(newPage);
   };
   useEffect(() => {
     setPage(1);
-  }, [activeCategory]);
+  }, [activeCategory, debouncedSearch]);
 
-  const debouncedSearch = useDebounce(search, 1500); // 500ms delay
-
-  useEffect(() => {
-    if (!debouncedSearch) return;
-
-    console.log("Search API call with:", debouncedSearch);
-  }, [debouncedSearch]);
-  if (isLoading) return <Spinner />;
+  if (isLoading || isTyping) return <Spinner />;
   if (isError || !data || data.products.length === 0)
     return <Variant message="No Products" variant="danger" />;
 

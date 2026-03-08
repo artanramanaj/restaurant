@@ -18,7 +18,7 @@ const ProductList = ({
   setIsTyping,
 }: Props) => {
   const [page, setPage] = useState<number>(1);
-  const [limit, setLimit] = useState<number>(3);
+  const [limit, setLimit] = useState<number>(6);
   const debouncedSearch = useDebounce(search, 800);
   const { data, isLoading, isError } = useGetProductsQuery({
     search: debouncedSearch,

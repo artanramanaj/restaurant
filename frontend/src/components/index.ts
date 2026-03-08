@@ -1,5 +1,7 @@
 export { default as Header } from "./Header";
 export { default as Footer } from "./Footer";
+export { default as Register } from "./Register";
+export { default as Login } from "./Login";
 export { default as Navigation } from "./Header/Navigation";
 export { default as TopBar } from "./TopBar";
 export { default as Spinner } from "./Spinner";

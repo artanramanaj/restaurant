@@ -13,7 +13,12 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
 import "./i18n/index";
-import { HomeScreen, AboutScreen } from "@/screens/index.ts";
+import {
+  HomeScreen,
+  AboutScreen,
+  RegisterScreen,
+  LoginScreen,
+} from "@/screens/index.ts";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 
@@ -22,6 +27,8 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<HomeScreen />} />
       <Route path="/about" element={<AboutScreen />} />
+      <Route path="/register" element={<RegisterScreen />} />
+      <Route path="/login" element={<LoginScreen />} />
     </Route>,
   ),
 );

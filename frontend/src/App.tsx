@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { Header, TopBar } from "@/components/index";
+import { Header, TopBar, Footer } from "@/components/index";
 function App() {
   return (
     <>
@@ -7,6 +7,7 @@ function App() {
         <TopBar />
         <Header />
         <Outlet />
+        <Footer />
       </main>
     </>
   );

@@ -1,8 +1,11 @@
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
-const ProductSearch = () => {
-  const [search, setSearch] = useState("");
+type searchProps = {
+  search: string;
+  setSearch: (value: string) => void;
+};
+const ProductSearch = ({ search, setSearch }: searchProps) => {
   const { t } = useTranslation();
+
   return (
     <div className="w-full">
       <input

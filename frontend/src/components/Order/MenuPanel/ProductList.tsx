@@ -3,13 +3,17 @@ import { useGetProductsQuery } from "@/store/productsApiSlice";
 import { Variant, Spinner } from "@/components";
 import { Paggination } from "@/components/index";
 import { useEffect, useState } from "react";
+import useDebounce from "@/hooks/useDebounce";
+
 type Props = {
   activeCategory: string;
+  search: string;
 };
-const ProductList = ({ activeCategory }: Props) => {
+const ProductList = ({ activeCategory, search }: Props) => {
   const [page, setPage] = useState<number>(1);
-  const [limit, setLimit] = useState<number>(3);
+  const [limit, setLimit] = useState<number>(8);
   const { data, isLoading, isError } = useGetProductsQuery({
+    search,
     category: activeCategory,
     page,
     limit,
@@ -21,11 +25,19 @@ const ProductList = ({ activeCategory }: Props) => {
   useEffect(() => {
     setPage(1);
   }, [activeCategory]);
+
+  const debouncedSearch = useDebounce(search, 1500); // 500ms delay
+
+  useEffect(() => {
+    if (!debouncedSearch) return;
+
+    console.log("Search API call with:", debouncedSearch);
+  }, [debouncedSearch]);
   if (isLoading) return <Spinner />;
   if (isError || !data || data.products.length === 0)
     return <Variant message="No Products" variant="danger" />;
 
-  console.log("products", data);
+  console.log("products", data.products);
 
   return (
     <>

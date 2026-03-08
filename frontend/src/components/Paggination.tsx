@@ -12,12 +12,12 @@ const Paggination = ({
   newPage,
   productLength,
 }: pagginationProps) => {
-  console.log("check the pages number", pages);
+  console.log("check the pages number", page);
   return (
     <div className="flex items-center gap-2">
       <button
         disabled={page === 1}
-        className={`${page === 1 ? "cursor-not-allowed" : "cursor-pointer"} bg-primary border-2 border-primary rounded-2xl px-6 p-2 text-white`}
+        className={`${page === 1 ? "!cursor-not-allowed" : "cursor-pointer"} bg-primary border-2 border-primary rounded-2xl px-6 p-2 text-white`}
         onClick={() => newPage(page - 1)}
       >
         Previous
@@ -26,7 +26,7 @@ const Paggination = ({
       {Array.from({ length: pages }).map((u, i) => (
         <button
           className={`${page === i + 1 ? "text-primary !font-bold" : "text-black"} rounded-full bg-transparent border-2 border-primary p-2 px-4`}
-          onClick={() => newPage(page + 1)}
+          onClick={() => newPage(i + 1)}
           key={i}
         >
           {i + 1}
@@ -34,8 +34,8 @@ const Paggination = ({
       ))}
 
       <button
-        disabled={page === productLength}
-        className="border-2 border-primary rounded-2xl p-2 px-6  text-black"
+        disabled={page === pages}
+        className={`${page === pages ? "!cursor-not-allowed" : "cursor-pointer"} border-2 border-primary rounded-2xl p-2 px-6  text-black`}
         onClick={() => newPage(page + 1)}
       >
         Next

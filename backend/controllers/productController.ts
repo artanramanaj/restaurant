@@ -9,8 +9,17 @@ export const getProducts = asyncHandler(async (req: Request, res: Response) => {
   const page = Number(req.query.page) || 1;
   const skip = (page - 1) * limit;
   const category = (req.query.category as string) || "all";
-  console.log("check the category", category);
-  const query = category === "all" ? {} : { category };
+  const search = (req.query.search as string) || "";
+
+  const query: Record<string, any> = {};
+
+  if (category !== "all") {
+    query.category = category;
+  }
+
+  if (search) {
+    query.name = { $regex: search, $options: "i" };
+  }
 
   const [products, total] = await Promise.all([
     Product.find(query).limit(limit).skip(skip).populate("category"),

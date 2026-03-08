@@ -3,8 +3,8 @@ import { apiSlice } from "./apiSlice";
 const productsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: ({ category, page, limit }) =>
-        `/products?category=${category}&page=${page}&limit=${limit}`,
+      query: ({ search, category, page, limit }) =>
+        `/products?search=${search}&category=${category}&page=${page}&limit=${limit}`,
       providesTags: ["Product"],
     }),
     createProduct: builder.mutation({

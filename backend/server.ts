@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import productRouter from "./routes/productRoutes.js";
 import categoryRouter from "./routes/categoryRoutes.js";
 import errorHandler from "./middleware/errorHandler.js";
+import userRouter from "./routes/userRoutes.js";
 dotenv.config();
 
 const app = express();
@@ -19,6 +20,7 @@ mongoose
 
 app.use("/api/categories", categoryRouter);
 app.use("/api/products", productRouter);
+app.use("/api/users", userRouter);
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello from TypeScript + Express!");
 });

@@ -1,7 +1,7 @@
 import { AddToCartModal } from "@/components/index";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import pizza from "@/assets/images/pizza-ham.webp";
+import pizza from "@/assets/images/pizza.jpg";
 type Category = {
   _id: string;
   name: string;

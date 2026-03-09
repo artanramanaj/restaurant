@@ -13,3 +13,8 @@ export const comparePassword = async (
 ): Promise<boolean> => {
   return await bcrypt.compare(password, hashedPassword);
 };
+
+export const hashCode = async (code: string): Promise<string> => {
+  const salt = await bcrypt.genSalt(SALT_ROUNDS);
+  return await bcrypt.hash(code, salt);
+};

@@ -3,8 +3,16 @@ import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import { customError } from "../middleware/errorHandler.js";
 import asyncHandler from "express-async-handler";
-import { hashPassword, hashCode, compareCode } from "../utils/passwordUtils.js";
-import { createTransporter } from "../utils/nodemailer.js";
+import {
+  hashPassword,
+  hashCode,
+  compareCode,
+  comparePassword,
+} from "../utils/passwordUtils.js";
+import { generateToken } from "../utils/verificationUtils.js";
+import { createTransporter } from "../utils/nodemailerUtils.js";
+import { custom } from "zod/v3";
+import { STATUS_CODES } from "node:http";
 
 export const registerUser = asyncHandler(
   async (req: Request, res: Response) => {
@@ -93,4 +101,101 @@ export const verifyUser = asyncHandler(async (req: Request, res: Response) => {
   await user.save();
 
   res.status(StatusCodes.OK).json({ message: "Account verified successfully" });
+});
+
+export const authUser = asyncHandler(async (req: Request, res: Response) => {
+  const { email, password } = req.body;
+
+  const user = await User.findOne({ email }).select("+password");
+  if (!user) {
+    throw new customError("User does not exist", StatusCodes.NOT_FOUND);
+  }
+
+  if (!user.isVerified) {
+    throw new customError(
+      "Please verify your account first",
+      StatusCodes.UNAUTHORIZED,
+    );
+  }
+
+  const passwordValid = await comparePassword(password, user.password);
+  if (!passwordValid) {
+    throw new customError("Wrong password", StatusCodes.UNAUTHORIZED);
+  }
+
+  const token = generateToken(user._id.toString(), user.username, user.role);
+
+  res.cookie("token", token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
+    maxAge: 7 * 24 * 60 * 60 * 1000, // ← 7 days in milliseconds
+  });
+
+  res.status(StatusCodes.OK).json({
+    message: "You are logged in successfully",
+  });
+});
+
+export const logoutUser = asyncHandler(async (req: Request, res: Response) => {
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
+  });
+
+  res.status(StatusCodes.OK).json({ message: "Logged out successfully" });
+});
+
+export const getUsers = asyncHandler(async (req: Request, res: Response) => {
+  const users = await User.find({});
+  res.status(StatusCodes.OK).json(users);
+});
+
+export const getUser = asyncHandler(async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  const user = await User.findOne({ _id: id });
+  if (!user) {
+    throw new customError("User not found", StatusCodes.NOT_FOUND);
+  }
+  res.status(StatusCodes.OK).json(user);
+});
+
+export const updateUser = asyncHandler(async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  const user = await User.findById(id).select("+password");
+
+  if (!user) {
+    throw new customError("User not found", StatusCodes.NOT_FOUND);
+  }
+
+  if (req.body.username) user.username = req.body.username;
+  if (req.body.email) user.email = req.body.email;
+
+  if (req.body.password) {
+    user.password = await hashPassword(req.body.password);
+  }
+
+  await user.save();
+
+  const updatedUser = await User.findById(id);
+
+  res.status(StatusCodes.OK).json(updatedUser);
+});
+
+export const deleteUser = asyncHandler(async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  const user = await User.findOneAndDelete({ _id: id });
+
+  if (!user) {
+    throw new customError(
+      `User with id ${id} does not exist`,
+      StatusCodes.NOT_FOUND,
+    );
+  }
+
+  res.status(StatusCodes.OK).json({ message: "User deleted successfully" });
 });

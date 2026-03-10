@@ -18,3 +18,10 @@ export const hashCode = async (code: string): Promise<string> => {
   const salt = await bcrypt.genSalt(SALT_ROUNDS);
   return await bcrypt.hash(code, salt);
 };
+
+export const compareCode = async (
+  code: string,
+  verificationCode: string,
+): Promise<boolean> => {
+  return await bcrypt.compare(code, verificationCode);
+};

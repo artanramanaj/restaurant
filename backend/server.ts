@@ -1,17 +1,16 @@
-import express, { Request, Response } from "express";
 import dotenv from "dotenv";
+dotenv.config();
+import express, { Request, Response } from "express";
 import mongoose from "mongoose";
 import productRouter from "./routes/productRoutes.js";
 import categoryRouter from "./routes/categoryRoutes.js";
 import errorHandler from "./middleware/errorHandler.js";
 import userRouter from "./routes/userRoutes.js";
-dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
-console.log("hello", process.env.EMAIL);
 // Connect to MongoDB
 mongoose
   .connect(process.env.MONGO_URI!)

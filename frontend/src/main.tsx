@@ -21,7 +21,7 @@ import {
 } from "@/screens/index.ts";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
-
+import { PrivateRoute, AdminRoute } from "@/components";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
@@ -29,6 +29,16 @@ const router = createBrowserRouter(
       <Route path="/about" element={<AboutScreen />} />
       <Route path="/register" element={<RegisterScreen />} />
       <Route path="/login" element={<LoginScreen />} />
+      {/* private routes */}
+      <Route element={<PrivateRoute />}>
+        {/* <Route path="/profile" element={<ProfileScreen />} /> */}
+      </Route>
+
+      {/* admin routes */}
+      <Route path="/admin" element={<AdminRoute />}>
+        {/* <Route path="profile" element={<AdminProfileScreen />} /> */}
+        {/* <Route path="users" element={<AdminUsersScreen />} /> */}
+      </Route>
     </Route>,
   ),
 );

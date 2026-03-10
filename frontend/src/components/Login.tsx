@@ -20,7 +20,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0f0f0f] flex items-center justify-center px-4 font-sans">
+    <div className="min-h-screen bg-[#0f0f0f] flex items-center justify-center p-8 font-sans">
       {/* Glow effect */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#EB2327] opacity-10 blur-[120px] rounded-full pointer-events-none" />
 
@@ -80,23 +80,6 @@ const Login = () => {
                 {showPassword ? <FiEyeOff size={16} /> : <FiEye size={16} />}
               </button>
             </div>
-          </div>
-
-          {/* Remember me */}
-          <div className="flex items-center gap-3">
-            <input
-              type="checkbox"
-              id="remember"
-              checked={rememberMe}
-              onChange={() => setRememberMe(!rememberMe)}
-              className="accent-[#EB2327] w-4 h-4 cursor-pointer shrink-0"
-            />
-            <label
-              htmlFor="remember"
-              className="text-xs text-gray-500 cursor-pointer"
-            >
-              Remember me for 30 days
-            </label>
           </div>
 
           {/* Submit */}

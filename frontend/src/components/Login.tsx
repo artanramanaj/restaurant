@@ -2,8 +2,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useAuthUserMutation } from "@/store/userApiSlice";
-import { Spinner, WelcomeBack } from "@/components";
 import {
+  Spinner,
+  WelcomeBack,
   EmailField,
   PasswordField,
   GoogleButton,

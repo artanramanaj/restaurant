@@ -26,3 +26,6 @@ export { default as EmailField } from "./login/EmailField";
 export { default as PasswordField } from "./login/PasswordField";
 export { default as GoogleButton } from "./login/GoogleButton";
 export { default as RegisterLink } from "./login/RegisterLink";
+export { default as Welcome } from "./register/Welcome";
+export { default as ConfirmPassword } from "./register/ConfirmPasswordField";
+export { default as Password } from "./register/PasswordField";

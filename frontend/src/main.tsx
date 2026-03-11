@@ -18,6 +18,7 @@ import {
   AboutScreen,
   RegisterScreen,
   LoginScreen,
+  VerifyScreen,
 } from "@/screens/index.ts";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
@@ -28,6 +29,7 @@ const router = createBrowserRouter(
       <Route index={true} path="/" element={<HomeScreen />} />
       <Route path="/about" element={<AboutScreen />} />
       <Route path="/register" element={<RegisterScreen />} />
+      <Route path="/verify" element={<VerifyScreen />} />
       <Route path="/login" element={<LoginScreen />} />
       {/* private routes */}
       <Route element={<PrivateRoute />}>

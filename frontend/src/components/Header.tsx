@@ -6,19 +6,26 @@ import type { RootState } from "@/store/store";
 import { clearCredentials } from "@/store/authSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-
+import { useLogoutUserMutation } from "@/store/userApiSlice";
+import { Spinner } from "@/components";
 const Header = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { userInfo } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const handleLogout = () => {
-    dispatch(clearCredentials());
-    toast.success("you are logged out");
-    navigate("/login");
+  const [logoutUser, { isLoading }] = useLogoutUserMutation();
+  const handleLogout = async () => {
+    try {
+      const { message } = await logoutUser().unwrap();
+      setDropdownOpen(false);
+      dispatch(clearCredentials());
+      toast.success(message);
+      navigate("/login");
+    } catch {
+      toast.error("Logout failed");
+    }
   };
-
+  if (isLoading) return <Spinner />;
   return (
     <div className="container grid grid-cols-[1fr_5fr_1fr] py-4 items-center gap-4">
       <h2>Logo</h2>

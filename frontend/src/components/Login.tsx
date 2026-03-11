@@ -1,8 +1,17 @@
 import { useState } from "react";
 import { FiMail, FiLock, FiEye, FiEyeOff } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
-
+import { useAuthUserMutation } from "@/store/userApiSlice";
+import { Spinner, Variant } from "@/components";
+import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "../store/authSlice";
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [authUser, { isLoading, isSuccess, error: isError }] =
+    useAuthUserMutation();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -14,11 +23,19 @@ const Login = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.MouseEvent) => {
+  const handleSubmit = async (e: React.MouseEvent) => {
     e.preventDefault();
-    console.log(formData);
+    try {
+      const res = await authUser(formData).unwrap();
+      console.log(res);
+      dispatch(setCredentials(res.user));
+      navigate("/");
+      toast.success(res.message);
+    } catch (error) {
+      toast.error(error?.data?.message);
+    }
   };
-
+  if (isLoading) return <Spinner />;
   return (
     <div className="min-h-screen bg-[#0f0f0f] flex items-center justify-center p-8 font-sans">
       {/* Glow effect */}

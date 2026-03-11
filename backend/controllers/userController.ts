@@ -134,6 +134,12 @@ export const authUser = asyncHandler(async (req: Request, res: Response) => {
 
   res.status(StatusCodes.OK).json({
     message: "You are logged in successfully",
+    user: {
+      id: user._id,
+      username: user.username,
+      email: user.email,
+      role: user.role,
+    },
   });
 });
 

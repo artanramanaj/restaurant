@@ -43,3 +43,4 @@ export { default as Dashboard } from "./Dashboard";
 export { default as UserCard } from "./dashboard/UserCard";
 export { default as ProductCard } from "./dashboard/ProductCard";
 export { default as OrderCard } from "./dashboard/OrderCard";
+export { default as CategoryCard } from "./dashboard/CategoryCard";

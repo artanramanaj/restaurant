@@ -7,6 +7,7 @@ import {
   getUser,
   updateUser,
   deleteUser,
+  getTotalUsers,
 } from "../controllers/userController.js";
 import express from "express";
 import validate from "../middleware/validate.js";
@@ -19,6 +20,7 @@ router
   .route("/")
   .post(validate(registerSchema), registerUser)
   .get(protect, adminOnly, getUsers);
+router.route("/total").get(protect, adminOnly, getTotalUsers);
 router.route("/verify").post(validate(verifySchema), verifyUser);
 router.route("/auth").post(validate(authSchema), authUser);
 router.route("/logout").post(logoutUser);

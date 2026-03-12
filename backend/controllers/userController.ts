@@ -204,3 +204,10 @@ export const deleteUser = asyncHandler(async (req: Request, res: Response) => {
 
   res.status(StatusCodes.OK).json({ message: "User deleted successfully" });
 });
+
+export const getTotalUsers = asyncHandler(
+  async (req: Request, res: Response) => {
+    const total = await User.countDocuments({});
+    res.status(StatusCodes.OK).json({ total });
+  },
+);

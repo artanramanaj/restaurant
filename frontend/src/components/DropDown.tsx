@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 type User = {
-  role: string;
+  role: "admin" | "user";
 };
 
 type Props = {

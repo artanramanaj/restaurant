@@ -1,9 +1,15 @@
 import { apiSlice } from "./apiSlice";
-
+type TotalUsersResponse = {
+  total: number;
+};
 const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getUser: builder.query({
       query: (id) => `/users/${id}`,
+      providesTags: ["Users"],
+    }),
+    getTotalUsers: builder.query<TotalUsersResponse, void>({
+      query: () => `/users/total`,
       providesTags: ["Users"],
     }),
     authUser: builder.mutation({
@@ -42,6 +48,7 @@ const userApiSlice = apiSlice.injectEndpoints({
 
 export const {
   useGetUserQuery,
+  useGetTotalUsersQuery,
   useAuthUserMutation,
   useLogoutUserMutation,
   useRegisterUserMutation,

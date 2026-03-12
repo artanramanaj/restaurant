@@ -113,6 +113,7 @@ export const authUser = asyncHandler(async (req: Request, res: Response) => {
     throw new customError(
       "Please verify your account first",
       StatusCodes.UNAUTHORIZED,
+      "UNVERIFIED_USER",
     );
   }
 

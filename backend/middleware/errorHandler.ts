@@ -4,10 +4,12 @@ import { StatusCodes } from "http-status-codes";
 // custom error
 export class customError extends Error {
   statusCode: number;
+  code?: string;
 
-  constructor(message: string, statusCode: number) {
+  constructor(message: string, statusCode: number, code?: string) {
     super(message);
     this.statusCode = statusCode;
+    this.code = code;
   }
 }
 
@@ -20,7 +22,7 @@ const errorHandler = (
   console.error(err);
 
   if (err instanceof customError) {
-    res.status(err.statusCode).json({ message: err.message });
+    res.status(err.statusCode).json({ message: err.message, code: err.code });
     return;
   }
 

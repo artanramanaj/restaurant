@@ -36,7 +36,7 @@ const Verify = () => {
 
       <div className="w-full max-w-md bg-[#1a1a1a] rounded-2xl border border-white/10 shadow-2xl p-8 relative z-10">
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-          <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
+          <label className="text-3xl font-bold text-white tracking-tight">
             Verify Your Account
           </label>
           <EmailVerify register={register} errors={errors} />

@@ -38,7 +38,11 @@ const Login = () => {
       navigate("/");
       toast.success(res.message);
     } catch (error: any) {
-      toast.error(error?.data?.message);
+      if (error?.data?.code === "UNVERIFIED_USER") {
+        navigate("/verify");
+      } else {
+        toast.error(error?.data?.message);
+      }
     }
   };
 

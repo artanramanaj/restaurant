@@ -1,5 +1,6 @@
 import { EmailVerify } from "@/components";
 export { default as Header } from "./Header";
+export { default as DropDown } from "./DropDown";
 export { default as Footer } from "./Footer";
 export { default as Register } from "./Register";
 export { default as Login } from "./Login";
@@ -38,3 +39,7 @@ export { default as LoginLink } from "./register/LoginLink";
 export { default as Verify } from "./Verify";
 export { default as EmailVerify } from "./verify/EmailField";
 export { default as CodeVerify } from "./verify/codeField";
+export { default as Dashboard } from "./Dashboard";
+export { default as UserCard } from "./dashboard/UserCard";
+export { default as ProductCard } from "./dashboard/ProductCard";
+export { default as OrderCard } from "./dashboard/OrderCard";

@@ -7,7 +7,7 @@ import { clearCredentials } from "@/store/authSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useLogoutUserMutation } from "@/store/userApiSlice";
-import { Spinner } from "@/components";
+import { Spinner, DropDown } from "@/components";
 const Header = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { userInfo } = useSelector((state: RootState) => state.auth);
@@ -42,32 +42,11 @@ const Header = () => {
             </button>
 
             {dropdownOpen && (
-              <div className="absolute right-0 mt-2 w-40 bg-white border rounded shadow-md z-50 flex flex-col">
-                <Link
-                  to="/profile"
-                  onClick={() => setDropdownOpen(false)}
-                  className="px-4 py-2 hover:bg-gray-100"
-                >
-                  Profile
-                </Link>
-
-                {userInfo.role === "admin" && (
-                  <Link
-                    to="/admin/users"
-                    onClick={() => setDropdownOpen(false)}
-                    className="px-4 py-2 hover:bg-gray-100"
-                  >
-                    Admin
-                  </Link>
-                )}
-
-                <button
-                  onClick={handleLogout}
-                  className="px-4 py-2 hover:bg-gray-100 text-left text-primary"
-                >
-                  Logout
-                </button>
-              </div>
+              <DropDown
+                userInfo={userInfo}
+                setDropdownOpen={setDropdownOpen}
+                handleLogout={handleLogout}
+              />
             )}
           </div>
         ) : (

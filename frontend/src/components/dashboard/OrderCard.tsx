@@ -18,7 +18,7 @@ const OrderCard = ({ count }: Props) => {
           </p>
           <h3 className="!text-primary text-2xl font-bold">Orders</h3>
           {count !== undefined && (
-            <p className="text-white/60 text-sm">{count} placed</p>
+            <p className="!text-primary text-sm">{count} placed</p>
           )}
         </div>
       </div>

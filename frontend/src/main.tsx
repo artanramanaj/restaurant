@@ -20,6 +20,7 @@ import {
   LoginScreen,
   VerifyScreen,
   DashboardScreen,
+  DashboardProductsScreen,
 } from "@/screens/index.ts";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
@@ -40,6 +41,7 @@ const router = createBrowserRouter(
       {/* admin routes */}
       <Route path="/admin" element={<AdminRoute />}>
         <Route index={true} element={<DashboardScreen />} />
+        <Route path="/admin/products" element={<DashboardProductsScreen />} />
       </Route>
     </Route>,
   ),

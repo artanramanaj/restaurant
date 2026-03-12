@@ -18,7 +18,7 @@ const ProductCard = ({ count }: Props) => {
           </p>
           <h3 className="!text-primary text-2xl font-bold">Products</h3>
           {count !== undefined && (
-            <p className="text-white/60 text-sm">{count} listed</p>
+            <p className="!text-primary text-sm">{count} listed</p>
           )}
         </div>
       </div>

@@ -97,3 +97,10 @@ export const deleteProduct = asyncHandler(
       .json({ message: "Product deleted successfully" });
   },
 );
+
+export const getTotalProducts = asyncHandler(
+  async (req: Request, res: Response) => {
+    const total = await Product.countDocuments({});
+    res.status(StatusCodes.OK).json({ total });
+  },
+);

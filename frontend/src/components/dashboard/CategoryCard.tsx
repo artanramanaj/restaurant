@@ -18,7 +18,7 @@ const CategoryCard = ({ count }: Props) => {
           </p>
           <h3 className="!text-primary text-2xl font-bold">Categories</h3>
           {count !== undefined && (
-            <p className="text-white/60 text-sm">{count} added</p>
+            <p className="!text-primary text-sm">{count} added</p>
           )}
         </div>
       </div>

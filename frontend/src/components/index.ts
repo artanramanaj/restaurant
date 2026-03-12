@@ -1,4 +1,3 @@
-import { EmailVerify } from "@/components";
 export { default as Header } from "./Header";
 export { default as DropDown } from "./DropDown";
 export { default as Footer } from "./Footer";
@@ -44,3 +43,5 @@ export { default as UserCard } from "./dashboard/UserCard";
 export { default as ProductCard } from "./dashboard/ProductCard";
 export { default as OrderCard } from "./dashboard/OrderCard";
 export { default as CategoryCard } from "./dashboard/CategoryCard";
+export { default as GeneralTable } from "./GeneralTable";
+export { default as DashboardProducts } from "./DashboardProducts";

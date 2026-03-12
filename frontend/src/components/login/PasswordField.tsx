@@ -22,7 +22,7 @@ const PasswordField = ({ register, errors }: Props) => {
         </span>
       </div>
       <div
-        className={`flex items-center bg-[#242424] border rounded-xl px-4 gap-3 focus-within:shadow-[0_0_0_3px_#EB232720] transition-all ${errors.password ? "border-red-500" : "border-white/10 focus-within:border-[#EB2327]"}`}
+        className={`flex items-center bg-[#242424] border rounded-xl px-4 gap-3 focus-within:shadow-[0_0_0_3px_#EB232720] transition-all ${errors.password ? "border" : "border-white/10 focus-within:border-[#EB2327]"}`}
       >
         <FiLock className="text-gray-500 shrink-0" size={16} />
         <input
@@ -40,7 +40,7 @@ const PasswordField = ({ register, errors }: Props) => {
         </button>
       </div>
       {errors.password && (
-        <p className="text-red-500 text-xs">{errors.password.message}</p>
+        <p className="text-primary text-xs">{errors.password.message}</p>
       )}
     </div>
   );

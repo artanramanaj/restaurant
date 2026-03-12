@@ -1,5 +1,10 @@
+import { Verify } from "@/components";
 const VerifyScreen = () => {
-  return <div>VerifyScreen</div>;
+  return (
+    <>
+      <Verify />
+    </>
+  );
 };
 
 export default VerifyScreen;

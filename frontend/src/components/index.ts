@@ -1,3 +1,4 @@
+import { EmailVerify } from "@/components";
 export { default as Header } from "./Header";
 export { default as Footer } from "./Footer";
 export { default as Register } from "./Register";
@@ -29,3 +30,11 @@ export { default as RegisterLink } from "./login/RegisterLink";
 export { default as Welcome } from "./register/Welcome";
 export { default as ConfirmPassword } from "./register/ConfirmPasswordField";
 export { default as Password } from "./register/PasswordField";
+export { default as UserNameField } from "./register/UserNameField";
+export { default as Email } from "./register/EmailField";
+export { default as Divider } from "./register/Divider";
+export { default as GoogleButtonRegister } from "./register/GoogleButton";
+export { default as LoginLink } from "./register/LoginLink";
+export { default as Verify } from "./Verify";
+export { default as EmailVerify } from "./verify/EmailField";
+export { default as CodeVerify } from "./verify/codeField";

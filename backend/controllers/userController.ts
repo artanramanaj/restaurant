@@ -11,8 +11,6 @@ import {
 } from "../utils/passwordUtils.js";
 import { generateToken } from "../utils/verificationUtils.js";
 import { createTransporter } from "../utils/nodemailerUtils.js";
-import { custom } from "zod/v3";
-import { STATUS_CODES } from "node:http";
 
 export const registerUser = asyncHandler(
   async (req: Request, res: Response) => {

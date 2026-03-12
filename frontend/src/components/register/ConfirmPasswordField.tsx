@@ -1,10 +1,16 @@
-import React from "react";
 import { FiLock, FiEye, FiEyeOff } from "react-icons/fi";
+import type { UseFormRegister, FieldErrors } from "react-hook-form";
+import type { RegisterForm } from "@/validations/registerSchema";
+
 interface ConfirmPasswordProps {
   showConfirm: boolean;
   setShowConfirm: (value: boolean) => void;
+  register: UseFormRegister<RegisterForm>;
+  errors: FieldErrors<RegisterForm>;
 }
 const ConfirmPassword = ({
+  register,
+  errors,
   showConfirm,
   setShowConfirm,
 }: ConfirmPasswordProps) => {
@@ -18,6 +24,7 @@ const ConfirmPassword = ({
         <input
           type={showConfirm ? "text" : "password"}
           placeholder="Repeat your password"
+          {...register("confirmPassword")}
           className="flex-1 bg-transparent py-3 text-sm text-white placeholder-gray-600 outline-none"
         />
         <button
@@ -28,6 +35,9 @@ const ConfirmPassword = ({
           {showConfirm ? <FiEyeOff size={16} /> : <FiEye size={16} />}
         </button>
       </div>
+      {errors.confirmPassword && (
+        <p className="text-red-500 text-xs">{errors.confirmPassword.message}</p>
+      )}
     </div>
   );
 };

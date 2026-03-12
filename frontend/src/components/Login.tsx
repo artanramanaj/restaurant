@@ -46,7 +46,7 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-[#0f0f0f] flex items-center justify-center p-8 font-sans">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primaryopacity-10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-150 h-75 bg-primaryopacity-10 blur-[120px] rounded-full pointer-events-none" />
       <div className="w-full max-w-md bg-[#1a1a1a] rounded-2xl border border-white/10 shadow-2xl p-8 relative z-10">
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           <WelcomeBack />

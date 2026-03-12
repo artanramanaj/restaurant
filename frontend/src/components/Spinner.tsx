@@ -1,5 +1,6 @@
 type SpinnerProps = {
   size?: "sm" | "md" | "lg";
+  className?: string;
 };
 
 const sizes = {
@@ -8,10 +9,12 @@ const sizes = {
   lg: "w-32 h-32",
 };
 
-export default function Spinner({ size = "lg" }: SpinnerProps) {
+export default function Spinner({ size = "lg", className }: SpinnerProps) {
   return (
-    <div
-      className={`${sizes[size]} animate-spin rounded-full border-4 border-gray-300 border-t-primary`}
-    />
+    <div className="flex justify-center py-4">
+      <div
+        className={`${sizes[size]} ${className}  animate-spin rounded-full border-4 border-gray-300 border-t-primary`}
+      />
+    </div>
   );
 }

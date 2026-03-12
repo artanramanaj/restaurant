@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FiLock, FiEye, FiEyeOff } from "react-icons/fi";
 import type { UseFormRegister, FieldErrors } from "react-hook-form";
 import type { RegisterForm } from "@/validations/registerSchema";
@@ -29,6 +29,9 @@ const Password = ({ register, errors }: Props) => {
           {showPassword ? <FiEyeOff size={16} /> : <FiEye size={16} />}
         </button>
       </div>
+      {errors.password && (
+        <p className="text-primary text-xs">{errors.password.message}</p>
+      )}
     </div>
   );
 };

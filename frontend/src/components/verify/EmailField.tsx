@@ -1,10 +1,10 @@
 import { FiMail } from "react-icons/fi";
 import type { UseFormRegister, FieldErrors } from "react-hook-form";
-import type { LoginForm } from "@/validations/loginSchema";
+import type { VerifyForm } from "@/validations/verifySchema";
 
 interface Props {
-  register: UseFormRegister<LoginForm>;
-  errors: FieldErrors<LoginForm>;
+  register: UseFormRegister<VerifyForm>;
+  errors: FieldErrors<VerifyForm>;
 }
 
 const EmailField = ({ register, errors }: Props) => (
@@ -13,7 +13,7 @@ const EmailField = ({ register, errors }: Props) => (
       Email Address
     </label>
     <div
-      className={`flex items-center bg-[#242424] border rounded-xl px-4 gap-3 focus-within:shadow-[0_0_0_3px_#EB232720] transition-all ${errors.email ? "border-primary" : "border-white/10 focus-within:border-[#EB2327]"}`}
+      className={`flex items-center bg-[#242424] border rounded-xl px-4 gap-3 focus-within:shadow-[0_0_0_3px_#EB232720] transition-all ${errors.email ? "border-red-500" : "border-white/10 focus-within:border-[#EB2327]"}`}
     >
       <FiMail className="text-gray-500 shrink-0" size={16} />
       <input
@@ -24,7 +24,7 @@ const EmailField = ({ register, errors }: Props) => (
       />
     </div>
     {errors.email && (
-      <p className="text-primary text-xs">{errors.email.message}</p>
+      <p className="text-red-500 text-xs">{errors.email.message}</p>
     )}
   </div>
 );

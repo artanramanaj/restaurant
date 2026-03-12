@@ -22,6 +22,14 @@ const userApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Users"],
     }),
+    verifyUser: builder.mutation({
+      query: (userData) => ({
+        url: "/users/verify",
+        method: "POST",
+        body: userData,
+      }),
+      invalidatesTags: ["Users"],
+    }),
     logoutUser: builder.mutation<{ message: string }, void>({
       query: () => ({
         url: "/users/logout",
@@ -37,4 +45,5 @@ export const {
   useAuthUserMutation,
   useLogoutUserMutation,
   useRegisterUserMutation,
+  useVerifyUserMutation,
 } = userApiSlice;

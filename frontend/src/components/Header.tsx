@@ -27,7 +27,7 @@ const Header = () => {
   };
   if (isLoading) return <Spinner />;
   return (
-    <div className="container grid grid-cols-[1fr_5fr_1fr] py-4 items-center gap-4">
+    <div className="container grid grid-cols-[1fr_5fr_1fr] py-6 items-center gap-4">
       <h2>Logo</h2>
       <Navigation />
       <div className="flex gap-4 justify-end">

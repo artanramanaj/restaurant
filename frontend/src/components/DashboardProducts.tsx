@@ -1,4 +1,4 @@
-import { GeneralTable, Spinner, CreateBtn } from "@/components";
+import { ProductTable, Spinner, CreateBtn } from "@/components";
 import { useGetProductsAdminQuery } from "@/store/productsApiSlice";
 import { Paggination } from "@/components";
 import { useState } from "react";
@@ -22,7 +22,7 @@ const DashboardProducts = () => {
         <h3>Products</h3>
         <CreateBtn type="button" text="Create New Product" />
       </div>
-      <GeneralTable head={head} body={products} />
+      <ProductTable head={head} body={products} />
       <Paggination
         page={data?.pagination?.page}
         pages={data?.pagination?.pages}

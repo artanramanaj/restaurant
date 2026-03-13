@@ -1,3 +1,4 @@
+import { TableData } from "@/components";
 type Category = {
   _id: string;
   name: string;
@@ -19,7 +20,7 @@ type Props = {
   body: Product[];
 };
 
-const GeneralTable = ({ head, body }: Props) => {
+const ProductTable = ({ head, body }: Props) => {
   return (
     <div className="overflow-x-auto rounded-2xl  ">
       <table className="w-full text-sm text-left">
@@ -43,23 +44,18 @@ const GeneralTable = ({ head, body }: Props) => {
               className={`
                 border-b border-[#EB2327]/10 transition-colors duration-150
                 
-                ${index % 2 === 0 ? "bg-[#1a1a1a]" : "bg-[#1a1a1a]/90"}
+                ${index % 2 === 0 ? "bg-lightblack" : "bg-[#1a1a1a]/90"}
               `}
             >
-              <td className="px-5 py-3 text-white font-medium">
-                {product?._id}
-              </td>
-              <td className="px-5 py-3 text-white font-medium">
-                {product?.name}
-              </td>
+              <TableData data={product?._id} />
+              <TableData data={product?.name} />
+
               <td className="px-5 py-3">
                 <span className=" text-primary text-sm font-semibold px-2 py-1 rounded-full">
                   {product?.category?.name}
                 </span>
               </td>
-              <td className="px-5 py-3 text-white font-semibold">
-                ${product?.price}
-              </td>
+
               <td className="px-5 py-3">
                 <img
                   src={product?.image}
@@ -67,12 +63,14 @@ const GeneralTable = ({ head, body }: Props) => {
                   className="w-10 h-10 rounded-lg object-cover border border-[#EB2327]/20"
                 />
               </td>
-              <td className="px-5 py-3 text-white text-sm">
-                {new Date(product?.createdAt).toLocaleDateString()}
-              </td>
-              <td className="px-5 py-3 text-white text-sm">
-                {new Date(product?.updatedAt).toLocaleDateString()}
-              </td>
+              <TableData data={`${product?.price}€`} />
+              <TableData
+                data={new Date(product?.createdAt).toLocaleDateString()}
+              />
+              <TableData
+                data={new Date(product?.updatedAt).toLocaleDateString()}
+              />
+
               <td className="px-5 py-3">
                 <div className="flex items-center gap-2">
                   <button className="text-sm bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white  px-3 py-2 rounded-lg  font-medium">
@@ -88,7 +86,7 @@ const GeneralTable = ({ head, body }: Props) => {
         </tbody>
       </table>
       {body.length === 0 && (
-        <div className="text-center py-12 text-primary bg-[#1a1a1a]">
+        <div className="text-center py-12 text-primary bg-lightblack">
           No products found
         </div>
       )}
@@ -96,4 +94,4 @@ const GeneralTable = ({ head, body }: Props) => {
   );
 };
 
-export default GeneralTable;
+export default ProductTable;

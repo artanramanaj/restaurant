@@ -4,4 +4,5 @@ export { default as RegisterScreen } from "./RegisterScreen";
 export { default as LoginScreen } from "./LoginScreen";
 export { default as VerifyScreen } from "./VerifyScreen";
 export { default as DashboardScreen } from "./DashboardScreen";
-export { default as DashboardProductsScreen } from "./DashboardProductsScreen";
+export { default as DashboardProductsScreen } from "./dashboard/product/DashboardProductsScreen";
+export { default as CreateProductScreen } from "./dashboard/product/CreateProductScreen";

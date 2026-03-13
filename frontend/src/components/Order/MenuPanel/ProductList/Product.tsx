@@ -2,6 +2,7 @@ import { AddToCartModal } from "@/components/index";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import pizza from "@/assets/images/pizza.jpg";
+import { API_URL } from "@/config/api";
 type Category = {
   _id: string;
   name: string;
@@ -20,10 +21,14 @@ type ProductProps = {
 const Product = ({ _id, image, name, price, category }: ProductProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { t } = useTranslation();
+  console.log("iamge from products", `${API_URL}${image}`);
   return (
-    <div>
-      {/* <img src={image} alt={name} /> */}
-      <img src={pizza} alt={name} />
+    <div className="w-full">
+      <img
+        className="w-full aspect-square object-cover rounded"
+        src={`${API_URL}/uploads/${image}`}
+        alt={name}
+      />
       <h5 className="mt-2 ml-3"> {t(`products.items.${_id}`)}</h5>
       <p className="mt-2 ml-3">{t(`categories.${category.name}`)}</p>
       <p className="text-primary !font-bold !text-[18px] ml-3 my-2">{price}€</p>

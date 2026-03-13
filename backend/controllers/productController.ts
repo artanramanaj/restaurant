@@ -22,7 +22,11 @@ export const getProducts = asyncHandler(async (req: Request, res: Response) => {
   }
 
   const [products, total] = await Promise.all([
-    Product.find(query).limit(limit).skip(skip).populate("category"),
+    Product.find(query)
+      .sort({ createdAt: -1 })
+      .limit(limit)
+      .skip(skip)
+      .populate("category"),
     Product.countDocuments(query),
   ]);
 
@@ -50,11 +54,20 @@ export const getProduct = asyncHandler(async (req: Request, res: Response) => {
 
 export const createProduct = asyncHandler(
   async (req: Request, res: Response) => {
-    const product = await Product.create(req.body);
+    const { name, category, price } = req.body;
 
-    if (!product) {
-      throw new customError("Product creation failed", StatusCodes.BAD_REQUEST);
+    if (!req.file) {
+      throw new customError("Image is required", StatusCodes.BAD_REQUEST);
     }
+
+    const image = req.file.filename; // ← e.g. "1741234567890-hamburger.jpg"
+
+    const product = await Product.create({
+      name,
+      category,
+      price,
+      image,
+    });
 
     res.status(StatusCodes.CREATED).json(product);
   },

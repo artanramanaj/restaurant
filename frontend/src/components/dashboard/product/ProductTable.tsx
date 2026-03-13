@@ -1,4 +1,9 @@
 import { TableData } from "@/components";
+import { API_URL } from "@/config/api";
+import { DeleteModal } from "@/components";
+import { useState } from "react";
+import { useDeleteProductMutation } from "@/store/productsApiSlice";
+import { toast } from "react-toastify";
 type Category = {
   _id: string;
   name: string;
@@ -21,6 +26,25 @@ type Props = {
 };
 
 const ProductTable = ({ head, body }: Props) => {
+  const [show, setShow] = useState<boolean>(false);
+  const [productId, setProductId] = useState<string>("");
+  const [deleteProduct, { isLoading }] = useDeleteProductMutation();
+
+  const toggleModal = (id: string) => {
+    setShow(true);
+    setProductId(id);
+  };
+  const removeProduct = async (id: string) => {
+    console.log("check the id in remove method", id);
+    try {
+      const res = await deleteProduct(id).unwrap();
+      toast.success(res.message);
+      setShow(false);
+    } catch (error: any) {
+      toast.error(error?.data?.message || "Something went wrong !");
+    }
+  };
+  console.log("productId", productId);
   return (
     <div className="overflow-x-auto rounded-2xl  ">
       <table className="w-full text-sm text-left">
@@ -58,7 +82,7 @@ const ProductTable = ({ head, body }: Props) => {
 
               <td className="px-5 py-3">
                 <img
-                  src={product?.image}
+                  src={`${API_URL}/uploads/${product?.image}`}
                   alt={product?.name}
                   className="w-10 h-10 rounded-lg object-cover border border-[#EB2327]/20"
                 />
@@ -76,9 +100,19 @@ const ProductTable = ({ head, body }: Props) => {
                   <button className="text-sm bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white  px-3 py-2 rounded-lg  font-medium">
                     Edit
                   </button>
-                  <button className="text-sm bg-[#EB2327] text-gray-300   hover:text-white  px-3 py-2 rounded-lg transition-all duration-200 font-medium">
+                  <button
+                    className="text-sm bg-primary text-gray-300   hover:text-white  px-3 py-2 rounded-lg transition-all duration-200 font-medium"
+                    onClick={() => toggleModal(product?._id || "")}
+                  >
                     Delete
                   </button>
+                  <DeleteModal
+                    id={productId || ""}
+                    title="Delete Product"
+                    show={show}
+                    onClose={() => setShow(false)}
+                    onDelete={removeProduct}
+                  />
                 </div>
               </td>
             </tr>

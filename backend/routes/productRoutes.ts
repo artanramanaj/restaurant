@@ -8,8 +8,12 @@ import {
   deleteProduct,
   getTotalProducts,
 } from "../controllers/productController.js";
+import { upload } from "../middleware/uploadMiddleware.js";
 import { protect, adminOnly } from "../middleware/authMiddleware.js";
-router.route("/").post(protect, adminOnly, createProduct).get(getProducts);
+router
+  .route("/")
+  .post(protect, adminOnly, upload.single("image"), createProduct)
+  .get(getProducts);
 router.route("/total").get(protect, adminOnly, getTotalProducts);
 router
   .route("/:id")

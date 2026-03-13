@@ -45,3 +45,4 @@ export { default as OrderCard } from "./dashboard/OrderCard";
 export { default as CategoryCard } from "./dashboard/CategoryCard";
 export { default as GeneralTable } from "./GeneralTable";
 export { default as DashboardProducts } from "./DashboardProducts";
+export { default as CreateBtn } from "./button/CreateBtn";

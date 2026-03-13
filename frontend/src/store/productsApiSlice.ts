@@ -18,8 +18,8 @@ const productsApiSlice = apiSlice.injectEndpoints({
         `/products?search=${search}&category=${category}&page=${page}&limit=${limit}`,
       providesTags: ["Product"],
     }),
-    getProductsAdmin: builder.query<Product[], void>({
-      query: () => `/products`,
+    getProductsAdmin: builder.query({
+      query: ({ page, limit }) => `/products?&page=${page}&limit=${limit}`,
       providesTags: ["Product"],
     }),
     getTotalProducts: builder.query<TotalProductResponse, void>({

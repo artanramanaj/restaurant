@@ -5,7 +5,7 @@ import { customError } from "../middleware/errorHandler.js";
 import asyncHandler from "express-async-handler";
 
 export const getProducts = asyncHandler(async (req: Request, res: Response) => {
-  const limit = Number(req.query.limit) || 3;
+  const limit = Number(req.query.limit) || 6;
   const page = Number(req.query.page) || 1;
   const skip = (page - 1) * limit;
   const category = (req.query.category as string) || "all";

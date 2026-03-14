@@ -4,6 +4,7 @@ import { DeleteModal } from "@/components";
 import { useState } from "react";
 import { useDeleteProductMutation } from "@/store/productsApiSlice";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 type Category = {
   _id: string;
   name: string;
@@ -97,9 +98,12 @@ const ProductTable = ({ head, body }: Props) => {
 
               <td className="px-5 py-3">
                 <div className="flex items-center gap-2">
-                  <button className="text-sm bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white  px-3 py-2 rounded-lg  font-medium">
-                    Edit
-                  </button>
+                  <Link to={`/admin/products/edit/${product?._id}`}>
+                    <button className="text-sm bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white  px-3 py-2 rounded-lg  font-medium">
+                      Edit
+                    </button>
+                  </Link>
+
                   <button
                     className="text-sm bg-primary text-gray-300   hover:text-white  px-3 py-2 rounded-lg transition-all duration-200 font-medium"
                     onClick={() => toggleModal(product?._id || "")}

@@ -6,3 +6,4 @@ export { default as VerifyScreen } from "./VerifyScreen";
 export { default as DashboardScreen } from "./DashboardScreen";
 export { default as DashboardProductsScreen } from "./dashboard/product/DashboardProductsScreen";
 export { default as CreateProductScreen } from "./dashboard/product/CreateProductScreen";
+export { default as EditProductScreen } from "./dashboard/product/EditProductScreen";

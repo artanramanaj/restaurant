@@ -18,6 +18,10 @@ const productsApiSlice = apiSlice.injectEndpoints({
         `/products?search=${search}&category=${category}&page=${page}&limit=${limit}`,
       providesTags: ["Product"],
     }),
+    getProduct: builder.query({
+      query: (id) => `/products/${id}`,
+      providesTags: ["Product"],
+    }),
     getProductsAdmin: builder.query({
       query: ({ page, limit }) => `/products?&page=${page}&limit=${limit}`,
       providesTags: ["Product"],
@@ -30,6 +34,14 @@ const productsApiSlice = apiSlice.injectEndpoints({
       query: (newProduct) => ({
         url: "/products",
         method: "POST",
+        body: newProduct,
+      }),
+      invalidatesTags: ["Product"],
+    }),
+    updateProduct: builder.mutation({
+      query: ({ id, newProduct }) => ({
+        url: `/products/${id}`,
+        method: "PUT",
         body: newProduct,
       }),
       invalidatesTags: ["Product"],
@@ -50,4 +62,6 @@ export const {
   useGetTotalProductsQuery,
   useCreateProductMutation,
   useDeleteProductMutation,
+  useUpdateProductMutation,
+  useGetProductQuery,
 } = productsApiSlice;

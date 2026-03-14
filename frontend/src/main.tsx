@@ -22,6 +22,7 @@ import {
   DashboardScreen,
   DashboardProductsScreen,
   CreateProductScreen,
+  EditProductScreen,
 } from "@/screens/index.ts";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
@@ -46,6 +47,10 @@ const router = createBrowserRouter(
         <Route
           path="/admin/products/create"
           element={<CreateProductScreen />}
+        />
+        <Route
+          path="/admin/products/edit/:id"
+          element={<EditProductScreen />}
         />
       </Route>
     </Route>,

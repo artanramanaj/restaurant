@@ -12,7 +12,6 @@ const Paggination = ({
   newPage,
   productLength,
 }: pagginationProps) => {
-  console.log("check the pages number", page);
   return (
     <div className="flex items-center gap-2">
       <button

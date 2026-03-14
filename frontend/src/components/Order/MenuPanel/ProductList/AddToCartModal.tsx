@@ -41,6 +41,7 @@ const AddToCartModal = ({
             <div className="flex flex-col items-start">
               <h2>{productName}</h2>
               <h4 className="text-primary !font-bold">{productPrice}</h4>
+              <p>{productCategory.name}</p>
             </div>
 
             <div className="w-full flex flex-col items-start">

@@ -21,7 +21,6 @@ type ProductProps = {
 const Product = ({ _id, image, name, price, category }: ProductProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { t } = useTranslation();
-  console.log("iamge from products", `${API_URL}${image}`);
   return (
     <div className="w-full">
       <img

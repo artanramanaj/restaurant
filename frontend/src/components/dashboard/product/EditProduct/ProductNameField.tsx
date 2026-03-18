@@ -4,10 +4,9 @@ import type { ProductForm } from "@/validations/productSchema";
 interface Props {
   register: UseFormRegister<ProductForm>;
   errors: FieldErrors<ProductForm>;
-  name: string;
 }
 
-const ProductNameField = ({ register, errors, name }: Props) => (
+const ProductNameField = ({ register, errors }: Props) => (
   <div className="flex flex-col gap-1.5">
     <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
       Product Name
@@ -17,7 +16,6 @@ const ProductNameField = ({ register, errors, name }: Props) => (
     >
       <input
         {...register("name")}
-        value={name}
         type="text"
         placeholder="e.g. Chicken Burger"
         className="flex-1 bg-transparent py-3 text-sm text-white placeholder-gray-600 outline-none"

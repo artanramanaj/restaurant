@@ -88,7 +88,9 @@ export const updateProduct = asyncHandler(
       );
     }
 
-    res.status(StatusCodes.OK).json(updatedProduct);
+    res
+      .status(StatusCodes.OK)
+      .json({ message: "Product Updated", product: updatedProduct });
   },
 );
 

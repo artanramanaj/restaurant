@@ -1,37 +1,61 @@
 import type { UseFormRegister, FieldErrors } from "react-hook-form";
 import type { ProductForm } from "@/validations/productSchema";
 import { API_URL } from "@/config/api";
-
+import { useState, useEffect } from "react";
 interface Props {
   register: UseFormRegister<ProductForm>;
   errors: FieldErrors<ProductForm>;
   image: string;
+  imageFile?: FileList;
 }
 
-const ProductImageField = ({ register, errors, image }: Props) => (
-  <div className="flex flex-col gap-1.5">
-    <img
-      className="w-24 h-24 object-cover"
-      src={`${API_URL}/uploads/${image}`}
-      alt="product image"
-    />
-    <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
-      Image
-    </label>
-    <div
-      className={`flex items-center bg-[#242424] border rounded-xl px-4 gap-3 focus-within:shadow-[0_0_0_3px_#EB232720] transition-all ${errors.image ? "border-red-500" : "border-white/10 focus-within:border-[#EB2327]"}`}
-    >
-      <input
-        {...register("image")}
-        type="file"
-        accept="image/jpeg, image/jpg, image/png, image/webp"
-        className="flex-1 bg-transparent py-3 text-sm text-white outline-none file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:bg-[#EB2327] file:text-white file:text-xs file:cursor-pointer"
-      />
+const ProductImageField = ({ register, errors, image, imageFile }: Props) => {
+  const [preview, setPreview] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (imageFile && imageFile instanceof FileList && imageFile.length > 0) {
+      const file = imageFile[0];
+
+      if (file instanceof File) {
+        const url = URL.createObjectURL(file);
+        setPreview(url);
+
+        return () => URL.revokeObjectURL(url);
+      }
+    } else if (image) {
+      setPreview(`${API_URL}/uploads/${image}`);
+    } else {
+      setPreview(null);
+    }
+  }, [imageFile, image]);
+
+  return (
+    <div className="flex flex-col gap-1.5">
+      {preview && (
+        <img
+          src={preview}
+          alt="product image"
+          className="w-24 h-24 object-cover rounded-xl border border-white/10"
+        />
+      )}
+      <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
+        Image
+      </label>
+      <div
+        className={`flex items-center bg-[#242424] border rounded-xl px-4 gap-3 focus-within:shadow-[0_0_0_3px_#EB232720] transition-all ${errors.image ? "border-red-500" : "border-white/10 focus-within:border-[#EB2327]"}`}
+      >
+        <input
+          {...register("image")}
+          type="file"
+          accept="image/jpeg, image/jpg, image/png, image/webp"
+          className="flex-1 bg-transparent py-3 text-sm text-white outline-none file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:bg-[#EB2327] file:text-white file:text-xs file:cursor-pointer"
+        />
+      </div>
+      {errors.image && (
+        <p className="text-red-500 text-xs">{errors.image.message}</p>
+      )}
     </div>
-    {errors.image && (
-      <p className="text-red-500 text-xs">{errors.image.message}</p>
-    )}
-  </div>
-);
+  );
+};
 
 export default ProductImageField;

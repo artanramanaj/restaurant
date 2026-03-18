@@ -1,7 +1,8 @@
-import { useForm } from "react-hook-form";
+import { useForm, Watch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { productSchema } from "@/validations/productSchema";
+import { useEffect } from "react";
 import {
   EditProductNameField,
   EditProductPriceField,
@@ -13,6 +14,8 @@ import {
   useGetProductQuery,
   useUpdateProductMutation,
 } from "@/store/productsApiSlice";
+import { useGetCategoriesQuery } from "@/store/categoriesApiSlice";
+
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 type ProductForm = z.infer<typeof productSchema>;
@@ -22,14 +25,30 @@ const EditProduct = () => {
   const { data, isLoading } = useGetProductQuery(id);
   const [updateProduct, { isLoading: updateLoading }] =
     useUpdateProductMutation();
+  const { data: categories, isLoading: categoryLoading } =
+    useGetCategoriesQuery();
+  Watch;
   console.log("check the data", data);
   const {
     register,
     handleSubmit,
+    watch,
+    reset,
     formState: { errors },
   } = useForm<ProductForm>({
     resolver: zodResolver(productSchema),
   });
+  const imageFile = watch("image");
+  useEffect(() => {
+    if (data) {
+      reset({
+        name: data.name,
+        category: data.category,
+        price: data.price,
+        image: data.image,
+      });
+    }
+  }, [data]);
   const onSubmit = async (data: ProductForm) => {
     const formData = new FormData();
     formData.append("name", data.name);
@@ -37,10 +56,10 @@ const EditProduct = () => {
     formData.append("price", data.price.toString());
     formData.append("image", data.image[0]);
     try {
-      await updateProduct({ id, formData }).unwrap();
-      toast.success("Product created successfully");
+      const res = await updateProduct({ id, body: formData }).unwrap();
+      toast.success(res.message);
 
-      navigate("/admin/products");
+      // navigate("/admin/products");
     } catch (error: any) {
       toast.error(error?.data?.message);
     }
@@ -52,26 +71,20 @@ const EditProduct = () => {
       <div className="w-full max-w-md bg-[#1a1a1a] rounded-2xl border border-white/10 shadow-2xl p-8 relative z-10">
         <h2 className="text-white text-2xl font-bold mb-6">Edit Product</h2>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-          <EditProductNameField
-            name={data.name}
-            register={register}
-            errors={errors}
-          />
+          <EditProductNameField register={register} errors={errors} />
           <EditProductCategoryField
-            category={data.category}
             register={register}
             errors={errors}
+            categories={categories}
+            categoryLoading={categoryLoading}
           />
           <EditProductImageField
             image={data.image}
+            imageFile={imageFile}
             register={register}
             errors={errors}
           />
-          <EditProductPriceField
-            price={data.price}
-            register={register}
-            errors={errors}
-          />
+          <EditProductPriceField register={register} errors={errors} />
           <button
             type="submit"
             className="w-full bg-primary hover:opacity-90 active:scale-[0.98] text-white font-semibold py-3.5 rounded-xl text-sm transition-all duration-200 mt-1 tracking-wide"

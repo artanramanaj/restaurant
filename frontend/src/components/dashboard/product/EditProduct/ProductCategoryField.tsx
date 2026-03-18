@@ -1,17 +1,19 @@
 import type { UseFormRegister, FieldErrors } from "react-hook-form";
 import type { ProductForm } from "@/validations/productSchema";
-import { useGetCategoriesQuery } from "@/store/categoriesApiSlice";
 
 interface Props {
   register: UseFormRegister<ProductForm>;
   errors: FieldErrors<ProductForm>;
-  category: string;
+  categories?: { _id: string; name: string }[];
+  categoryLoading: boolean;
 }
 
-const ProductCategoryField = ({ register, errors, category }: Props) => {
-  console.log("category", category);
-  const { data: categories, isLoading } = useGetCategoriesQuery();
-
+const ProductCategoryField = ({
+  register,
+  errors,
+  categories,
+  categoryLoading,
+}: Props) => {
   return (
     <div className="flex flex-col gap-1.5">
       <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
@@ -23,10 +25,9 @@ const ProductCategoryField = ({ register, errors, category }: Props) => {
         <select
           {...register("category")}
           className="flex-1 bg-transparent py-3 text-sm text-white outline-none cursor-pointer"
-          defaultValue={category}
         >
           <option value="" disabled className="bg-lightblack">
-            {isLoading ? "Loading..." : "Select a category"}
+            {categoryLoading ? "Loading..." : "Select a category"}
           </option>
           {categories?.map((cat: { _id: string; name: string }) => (
             <option key={cat._id} value={cat._id} className="bg-lightblack">

@@ -4,10 +4,9 @@ import type { ProductForm } from "@/validations/productSchema";
 interface Props {
   register: UseFormRegister<ProductForm>;
   errors: FieldErrors<ProductForm>;
-  price: number;
 }
 
-const ProductPriceField = ({ register, errors, price }: Props) => (
+const ProductPriceField = ({ register, errors }: Props) => (
   <div className="flex flex-col gap-1.5">
     <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
       Price
@@ -18,7 +17,6 @@ const ProductPriceField = ({ register, errors, price }: Props) => (
       <span className="text-gray-500 text-sm">$</span>
       <input
         {...register("price")}
-        value={price}
         type="number"
         step="0.01"
         placeholder="0.00"

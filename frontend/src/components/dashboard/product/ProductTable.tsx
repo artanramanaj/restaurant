@@ -99,7 +99,7 @@ const ProductTable = ({ head, body }: Props) => {
               <td className="px-5 py-3">
                 <div className="flex items-center gap-2">
                   <Link to={`/admin/products/edit/${product?._id}`}>
-                    <button className="text-sm bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white  px-3 py-2 rounded-lg  font-medium">
+                    <button className="text-sm bg-white/5 hover:bg-white/10 text-white  px-3 py-2 rounded-lg  font-medium">
                       Edit
                     </button>
                   </Link>

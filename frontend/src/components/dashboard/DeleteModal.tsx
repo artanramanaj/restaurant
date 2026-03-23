@@ -22,7 +22,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
   if (!show) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20">
       <div className="bg-lightblack rounded-2xl shadow-lg w-full max-w-sm p-8">
         <h2 className="text-xl font-bold text-white mb-2">{title}</h2>
         <p className="text-sm text-gray-300 mb-6">{description}</p>

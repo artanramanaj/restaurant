@@ -27,6 +27,7 @@ type Props = {
 };
 
 const ProductTable = ({ head, body }: Props) => {
+  console.log("check the body", body);
   const [show, setShow] = useState<boolean>(false);
   const [productId, setProductId] = useState<string>("");
   const [deleteProduct, { isLoading }] = useDeleteProductMutation();

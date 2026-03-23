@@ -49,17 +49,27 @@ const EditProduct = () => {
       });
     }
   }, [data]);
-  const onSubmit = async (data: ProductForm) => {
+  const onSubmit = async (formValues: ProductForm) => {
     const formData = new FormData();
-    formData.append("name", data.name);
-    formData.append("category", data.category);
-    formData.append("price", data.price.toString());
-    formData.append("image", data.image[0]);
-    try {
-      const res = await updateProduct({ id, body: formData }).unwrap();
-      toast.success(res.message);
+    formData.append("name", formValues.name);
+    formData.append("category", formValues.category);
+    formData.append("price", formValues.price.toString());
 
-      // navigate("/admin/products");
+    if (formValues.image instanceof FileList && formValues.image.length > 0) {
+      formData.append("image", formValues.image[0]);
+    } else if (typeof formValues.image === "string") {
+      formData.append("image", formValues.image);
+    }
+
+    console.log("id", id);
+    console.log("formData name", formData.get("name"));
+    console.log("formData category", formData.get("category"));
+    console.log("formData price", formData.get("price"));
+    console.log("formData image", formData.get("image"));
+
+    try {
+      const res = await updateProduct({ id, newProduct: formData }).unwrap();
+      toast.success(res.message);
     } catch (error: any) {
       toast.error(error?.data?.message);
     }

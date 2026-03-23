@@ -18,6 +18,6 @@ router.route("/total").get(protect, adminOnly, getTotalProducts);
 router
   .route("/:id")
   .get(getProduct)
-  .put(protect, adminOnly, updateProduct)
+  .put(protect, adminOnly, upload.single("image"), updateProduct)
   .delete(protect, adminOnly, deleteProduct);
 export default router;

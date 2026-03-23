@@ -45,7 +45,6 @@ const EditProduct = () => {
         name: data.name,
         category: data.category,
         price: data.price,
-        image: data.image,
       });
     }
   }, [data]);
@@ -55,18 +54,12 @@ const EditProduct = () => {
     formData.append("category", formValues.category);
     formData.append("price", formValues.price.toString());
 
-    if (formValues.image instanceof FileList && formValues.image.length > 0) {
-      formData.append("image", formValues.image[0]);
-    } else if (typeof formValues.image === "string") {
-      formData.append("image", formValues.image);
+    if (imageFile instanceof FileList && imageFile.length > 0) {
+      formData.append("image", imageFile[0]);
+    } else {
+      formData.append("image", data.image);
     }
-
-    console.log("id", id);
-    console.log("formData name", formData.get("name"));
-    console.log("formData category", formData.get("category"));
-    console.log("formData price", formData.get("price"));
-    console.log("formData image", formData.get("image"));
-
+    console.log("image being sent", formData.get("image"));
     try {
       const res = await updateProduct({ id, newProduct: formData }).unwrap();
       toast.success(res.message);

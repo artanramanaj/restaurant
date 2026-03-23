@@ -8,20 +8,23 @@ export const productSchema = z.object({
 
   category: z.string().min(1, "Category is required"),
 
-  image: z
-    .instanceof(FileList)
-    .refine((files) => files.length > 0, "Image is required")
-    .refine(
-      (files) => files[0]?.size <= 5 * 1024 * 1024,
-      "Image must be less than 5MB",
-    )
-    .refine(
-      (files) =>
-        ["image/jpeg", "image/jpg", "image/png", "image/webp"].includes(
-          files[0]?.type,
-        ),
-      "Only jpeg, jpg, png, webp allowed",
-    ),
+  image: z.union([
+    z
+      .instanceof(FileList)
+      .refine(
+        (files) => files.length === 0 || files[0]?.size <= 5 * 1024 * 1024,
+        "Image must be less than 5MB",
+      )
+      .refine(
+        (files) =>
+          files.length === 0 ||
+          ["image/jpeg", "image/jpg", "image/png", "image/webp"].includes(
+            files[0]?.type,
+          ),
+        "Only jpeg, jpg, png, webp allowed",
+      ),
+    z.string(),
+  ]),
 
   price: z.preprocess(
     (val) => parseFloat(val as string),

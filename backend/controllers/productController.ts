@@ -77,20 +77,26 @@ export const updateProduct = asyncHandler(
   async (req: Request, res: Response) => {
     const { id } = req.params;
 
-    const updatedProduct = await Product.findByIdAndUpdate(id, req.body, {
-      new: true,
-    });
+    const product = await Product.findById(id);
 
-    if (!updatedProduct) {
+    if (!product) {
       throw new customError(
         `Product with id ${id} not found`,
         StatusCodes.NOT_FOUND,
       );
     }
 
-    res
-      .status(StatusCodes.OK)
-      .json({ message: "Product Updated", product: updatedProduct });
+    product.name = req.body.name || product.name;
+    product.category = req.body.category || product.category;
+    product.price = req.body.price || product.price;
+    product.image = req.file ? req.file.filename : req.body.image;
+
+    const updatedProduct = await product.save();
+
+    res.status(StatusCodes.OK).json({
+      message: "Product Updated",
+      product: updatedProduct,
+    });
   },
 );
 

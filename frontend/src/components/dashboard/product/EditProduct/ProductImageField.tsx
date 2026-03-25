@@ -11,8 +11,6 @@ interface Props {
 
 const ProductImageField = ({ register, errors, image, imageFile }: Props) => {
   const [preview, setPreview] = useState<string | null>(null);
-  console.log("preview", preview);
-  console.log("image", image);
 
   useEffect(() => {
     if (imageFile && imageFile instanceof FileList && imageFile.length > 0) {

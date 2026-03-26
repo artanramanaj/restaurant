@@ -8,7 +8,6 @@ const DashboardProducts = () => {
   const [limit, setLimit] = useState<number>(10);
   const { data, isLoading } = useGetProductsAdminQuery({ page, limit });
   const products = data?.products || [];
-  console.log("data", data);
   const navigate = useNavigate();
   if (isLoading) return <Spinner />;
 

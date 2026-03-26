@@ -7,3 +7,6 @@ export { default as DashboardScreen } from "./DashboardScreen";
 export { default as DashboardProductsScreen } from "./dashboard/product/DashboardProductsScreen";
 export { default as CreateProductScreen } from "./dashboard/product/CreateProductScreen";
 export { default as EditProductScreen } from "./dashboard/product/EditProductScreen";
+export { default as DashboardCategoriesScreen } from "./dashboard/category/DashboardCategoriesScreen";
+export { default as CreateCategoryScreen } from "./dashboard/category/CreateCategoryScreen";
+export { default as EditCategoryScreen } from "./dashboard/category/EditCategoryScreen";

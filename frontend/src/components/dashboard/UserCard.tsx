@@ -4,7 +4,6 @@ interface Props {
   count?: number;
 }
 const UserCard = ({ count }: Props) => {
-  console.log("check the count", count);
   return (
     <Link to="/admin/users">
       <div className="bg-transparent border-2 border-primary rounded-2xl p-6 flex flex-col items-center gap-4 hover:opacity-90 active:scale-[0.98] transition-all duration-200 cursor-pointer">

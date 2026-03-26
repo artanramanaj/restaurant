@@ -25,10 +25,9 @@ const EditProduct = () => {
   const { data, isLoading } = useGetProductQuery(id);
   const [updateProduct, { isLoading: updateLoading }] =
     useUpdateProductMutation();
-  const { data: categories, isLoading: categoryLoading } =
+  const { data: categoriesData, isLoading: categoryLoading } =
     useGetCategoriesQuery();
   Watch;
-  console.log("check the data", data);
   const {
     register,
     handleSubmit,
@@ -59,10 +58,10 @@ const EditProduct = () => {
     } else {
       formData.append("image", data.image);
     }
-    console.log("image being sent", formData.get("image"));
     try {
       const res = await updateProduct({ id, newProduct: formData }).unwrap();
       toast.success(res.message);
+      navigate("/admin/products");
     } catch (error: any) {
       toast.error(error?.data?.message);
     }
@@ -78,7 +77,7 @@ const EditProduct = () => {
           <EditProductCategoryField
             register={register}
             errors={errors}
-            categories={categories}
+            categories={categoriesData?.categories}
             categoryLoading={categoryLoading}
           />
           <EditProductImageField

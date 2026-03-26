@@ -12,10 +12,8 @@ const ProductImageField = ({ register, errors }: Props) => {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    console.log("check the file", file);
     if (file) {
       const url = URL.createObjectURL(file);
-      console.log("check the url", url);
       setPreview(url);
     } else {
       setPreview(null);

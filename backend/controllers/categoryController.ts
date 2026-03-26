@@ -6,11 +6,52 @@ import { customError } from "../middleware/errorHandler.js";
 
 export const getCategories = asyncHandler(
   async (req: Request, res: Response) => {
-    const categories = await Category.find({});
-    res.status(StatusCodes.OK).json(categories);
+    const { limit, page } = req.query;
+
+    if (!limit && !page) {
+      const categories = await Category.find({});
+      const total = await Category.countDocuments();
+
+      return res.status(StatusCodes.OK).json({
+        categories,
+        pagination: {
+          total,
+          page: 1,
+          pages: 1,
+        },
+      });
+    }
+
+    const parsedLimit = Number(limit) || 6;
+    const parsedPage = Number(page) || 1;
+    const skip = (parsedPage - 1) * parsedLimit;
+
+    const categories = await Category.find({}).skip(skip).limit(parsedLimit);
+
+    const total = await Category.countDocuments();
+
+    res.status(StatusCodes.OK).json({
+      categories,
+      pagination: {
+        total,
+        page: parsedPage,
+        pages: Math.ceil(total / parsedLimit),
+      },
+    });
   },
 );
 
+export const getCategory = asyncHandler(async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  const category = await Category.findById(id);
+
+  if (!category) {
+    throw new customError("Category not found", StatusCodes.NOT_FOUND);
+  }
+
+  res.status(StatusCodes.OK).json({ category });
+});
 export const createCategory = asyncHandler(
   async (req: Request, res: Response) => {
     const { name, description } = req.body;
@@ -26,6 +67,16 @@ export const createCategory = asyncHandler(
       );
     }
 
+    const existing = await Category.findOne({ name });
+
+    if (existing) {
+      let { name } = existing;
+      throw new customError(
+        `Category "${name}" exist`,
+        StatusCodes.BAD_REQUEST,
+      );
+    }
+
     const category = await Category.create(categoryData);
     res.status(StatusCodes.CREATED).json(category);
   },
@@ -33,20 +84,17 @@ export const createCategory = asyncHandler(
 
 export const updateCategory = asyncHandler(
   async (req: Request, res: Response) => {
-    const { name, description } = req.body;
     const { id } = req.params;
-    const categoryData = {
-      name,
-      description,
-    };
+
     const updatedCategory = await Category.findByIdAndUpdate(id, req.body, {
       new: true,
     });
 
     if (!updatedCategory) {
-      throw new customError("category not updated", StatusCodes.BAD_REQUEST);
+      throw new customError("Category not found", StatusCodes.NOT_FOUND);
     }
-    res.status(StatusCodes.OK).json(updatedCategory);
+
+    res.status(StatusCodes.OK).json({ category: updatedCategory });
   },
 );
 
@@ -65,5 +113,12 @@ export const deleteCategory = asyncHandler(
     res
       .status(StatusCodes.OK)
       .json({ message: "Category deleted successfully" });
+  },
+);
+
+export const getTotalCategories = asyncHandler(
+  async (req: Request, res: Response) => {
+    const total = await Category.countDocuments({});
+    res.status(StatusCodes.OK).json({ total });
   },
 );

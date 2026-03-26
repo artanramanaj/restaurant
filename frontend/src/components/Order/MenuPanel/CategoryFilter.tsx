@@ -9,11 +9,11 @@ type Props = {
 const CategoryFilter = ({ activeCategory, setActiveCategory }: Props) => {
   const { t } = useTranslation();
   const {
-    data: categories,
+    data,
     isLoading: categoryLoading,
     isError: categoryError,
-  } = useGetCategoriesQuery();
-
+  } = useGetCategoriesQuery({});
+  const categories = data?.categories;
   if (categoryLoading) return <Spinner />;
   if (categoryError || !categories) return <p>Something went wrong!</p>;
   const allCategories = [{ _id: "all", name: "all" }, ...(categories || [])];

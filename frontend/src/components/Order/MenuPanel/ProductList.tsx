@@ -42,8 +42,6 @@ const ProductList = ({
   if (isError || !data || data.products.length === 0)
     return <Variant message="No Products" variant="danger" />;
 
-  console.log("products", data.products);
-
   return (
     <>
       <div className="grid grid-cols-2 gap-y-5 md:gap-y-10  md:gap-x-8 md:grid-cols-3">

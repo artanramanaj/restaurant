@@ -11,7 +11,10 @@ const DashboardProducts = () => {
   const navigate = useNavigate();
   if (isLoading) return <Spinner />;
 
-  const head = products.length > 0 ? Object.keys(products[0]) : [];
+  const head =
+    products.length > 0
+      ? Object.keys(products[0]).filter((key) => key !== "__v")
+      : [];
   const changePage = (newPage: number) => {
     setPage(newPage);
   };

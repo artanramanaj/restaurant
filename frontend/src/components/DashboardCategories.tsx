@@ -17,7 +17,10 @@ const DashboardCategories = () => {
 
   if (isLoading) return <Spinner />;
 
-  const head = categories.length > 0 ? Object.keys(categories[0]) : [];
+  const head =
+    categories.length > 0
+      ? Object.keys(categories[0]).filter((key) => key !== "__v")
+      : [];
   console.log("check categorties", categories);
   return (
     <div className="container py-8 flex flex-col gap-4">

@@ -47,6 +47,9 @@ const CategoryTable = ({ head, body }: Props) => {
                 {h}
               </th>
             ))}
+            <th className="px-5 py-4 font-semibold whitespace-nowrap">
+              Actions
+            </th>
           </tr>
         </thead>
 

@@ -27,6 +27,8 @@ const EditProduct = () => {
     useUpdateProductMutation();
   const { data: categoriesData, isLoading: categoryLoading } =
     useGetCategoriesQuery();
+  console.log("check category data", categoriesData);
+  console.log("check data data", data);
   Watch;
   const {
     register,

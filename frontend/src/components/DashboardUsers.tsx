@@ -1,0 +1,48 @@
+import { useNavigate } from "react-router-dom";
+import { UserTable, Spinner, Paggination } from "@/components";
+import { useGetUsersQuery } from "@/store/userApiSlice";
+import { useState } from "react";
+
+const DashboardUsers = () => {
+  const [page, setPage] = useState<number>(1);
+  const [limit, setLimit] = useState<number>(10);
+  const { data, isLoading } = useGetUsersQuery({ page, limit });
+
+  const users = data?.users || [];
+
+  const changePage = (newPage: number) => {
+    setPage(newPage);
+  };
+
+  if (isLoading) return <Spinner />;
+
+  const excludedFields = [
+    "__v",
+    "verificationCode",
+    "verificationCodeExpires",
+    "resetPasswordToken",
+    "resetPasswordExpires",
+  ];
+  const head =
+    users.length > 0
+      ? Object.keys(users[0]).filter((key) => !excludedFields.includes(key))
+      : [];
+
+  return (
+    <div className="container py-8 flex flex-col gap-4">
+      <div className="flex items-center justify-between">
+        <h3 className="text-white text-2xl font-bold">Users</h3>
+      </div>
+      <UserTable head={head} body={users} />
+      <Paggination
+        page={data?.pagination?.page}
+        pages={data?.pagination?.pages}
+        productLength={users.length}
+        newPage={changePage}
+        limit={limit}
+      />
+    </div>
+  );
+};
+
+export default DashboardUsers;

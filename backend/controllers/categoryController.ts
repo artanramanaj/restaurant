@@ -94,7 +94,10 @@ export const updateCategory = asyncHandler(
       throw new customError("Category not found", StatusCodes.NOT_FOUND);
     }
 
-    res.status(StatusCodes.OK).json({ category: updatedCategory });
+    res.status(StatusCodes.OK).json({
+      message: "Category  Updated",
+      category: updatedCategory,
+    });
   },
 );
 

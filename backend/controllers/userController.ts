@@ -153,8 +153,26 @@ export const logoutUser = asyncHandler(async (req: Request, res: Response) => {
 });
 
 export const getUsers = asyncHandler(async (req: Request, res: Response) => {
-  const users = await User.find({});
-  res.status(StatusCodes.OK).json(users);
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 10;
+  const skip = (page - 1) * limit;
+
+  const total = await User.countDocuments({});
+  const pages = Math.ceil(total / limit);
+
+  const users = await User.find({})
+    .select("-verificationCode -verificationCodeExpires")
+    .skip(skip)
+    .limit(limit);
+
+  res.status(StatusCodes.OK).json({
+    users,
+    pagination: {
+      page,
+      pages,
+      total,
+    },
+  });
 });
 
 export const getUser = asyncHandler(async (req: Request, res: Response) => {

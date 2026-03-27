@@ -4,6 +4,10 @@ type TotalUsersResponse = {
 };
 const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+    getUsers: builder.query({
+      query: ({ page, limit }) => `/users?page=${page}&limit=${limit}`,
+      providesTags: ["Users"],
+    }),
     getUser: builder.query({
       query: (id) => `/users/${id}`,
       providesTags: ["Users"],
@@ -25,6 +29,13 @@ const userApiSlice = apiSlice.injectEndpoints({
         url: "/users",
         method: "POST",
         body: userData,
+      }),
+      invalidatesTags: ["Users"],
+    }),
+    deleteUser: builder.mutation({
+      query: (id) => ({
+        url: `/users/${id}`,
+        method: "DELETE",
       }),
       invalidatesTags: ["Users"],
     }),
@@ -53,4 +64,6 @@ export const {
   useLogoutUserMutation,
   useRegisterUserMutation,
   useVerifyUserMutation,
+  useGetUsersQuery,
+  useDeleteUserMutation,
 } = userApiSlice;

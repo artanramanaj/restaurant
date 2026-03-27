@@ -8,8 +8,8 @@ interface Props {
 }
 
 const ProductCategoryField = ({ register, errors }: Props) => {
-  const { data: categories, isLoading } = useGetCategoriesQuery({});
-
+  const { data: dataCategories, isLoading } = useGetCategoriesQuery({});
+  console.log("cat", dataCategories);
   return (
     <div className="flex flex-col gap-1.5">
       <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
@@ -26,11 +26,13 @@ const ProductCategoryField = ({ register, errors }: Props) => {
           <option value="" disabled className="bg-lightblack">
             {isLoading ? "Loading..." : "Select a category"}
           </option>
-          {categories?.map((cat: { _id: string; name: string }) => (
-            <option key={cat._id} value={cat._id} className="bg-lightblack">
-              {cat.name}
-            </option>
-          ))}
+          {dataCategories?.categories?.map(
+            (cat: { _id: string; name: string }) => (
+              <option key={cat._id} value={cat._id} className="bg-lightblack">
+                {cat.name}
+              </option>
+            ),
+          )}
         </select>
       </div>
       {errors.category && (

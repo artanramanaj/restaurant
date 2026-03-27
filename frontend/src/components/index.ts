@@ -66,3 +66,5 @@ export { default as CategoryDescriptionField } from "./dashboard/category/Create
 export { default as EditCategory } from "./dashboard/category/EditCategory";
 export { default as EditCategoryNameField } from "./dashboard/category/EditCategory/CategoryNameField";
 export { default as EditCategoryDescriptionField } from "./dashboard/category/EditCategory/CategoryDescriptionField";
+export { default as DashboardUsers } from "./DashboardUsers";
+export { default as UserTable } from "./dashboard/user/UserTable";

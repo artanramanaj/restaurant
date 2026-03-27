@@ -26,6 +26,7 @@ import {
   DashboardCategoriesScreen,
   CreateCategoryScreen,
   EditCategoryScreen,
+  DashboardUsersScreen,
 } from "@/screens/index.ts";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
@@ -48,6 +49,14 @@ const router = createBrowserRouter(
         <Route index={true} element={<DashboardScreen />} />
         <Route path="/admin/products" element={<DashboardProductsScreen />} />
         <Route
+          path="/admin/products/create"
+          element={<CreateProductScreen />}
+        />
+        <Route
+          path="/admin/products/edit/:id"
+          element={<EditProductScreen />}
+        />
+        <Route
           path="/admin/categories"
           element={<DashboardCategoriesScreen />}
         />
@@ -59,14 +68,7 @@ const router = createBrowserRouter(
           path="/admin/categories/edit/:id"
           element={<EditCategoryScreen />}
         />
-        <Route
-          path="/admin/products/create"
-          element={<CreateProductScreen />}
-        />
-        <Route
-          path="/admin/products/edit/:id"
-          element={<EditProductScreen />}
-        />
+        <Route path="/admin/users" element={<DashboardUsersScreen />} />
       </Route>
     </Route>,
   ),

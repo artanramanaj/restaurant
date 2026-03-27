@@ -10,3 +10,4 @@ export { default as EditProductScreen } from "./dashboard/product/EditProductScr
 export { default as DashboardCategoriesScreen } from "./dashboard/category/DashboardCategoriesScreen";
 export { default as CreateCategoryScreen } from "./dashboard/category/CreateCategoryScreen";
 export { default as EditCategoryScreen } from "./dashboard/category/EditCategoryScreen";
+export { default as DashboardUsersScreen } from "./dashboard/user/DashboardUsersScreen";

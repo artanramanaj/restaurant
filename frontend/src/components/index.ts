@@ -58,6 +58,7 @@ export { default as EditProductPriceField } from "./dashboard/product/EditProduc
 export { default as EditProductImageField } from "./dashboard/product/EditProduct/ProductImageField";
 export { default as EditProductCategoryField } from "./dashboard/product/EditProduct/ProductCategoryField";
 export { default as DeleteModal } from "./dashboard/DeleteModal";
+export { default as UpdateRoleModal } from "./dashboard/UpdateRoleModal";
 export { default as DashboardCategories } from "./DashboardCategories";
 export { default as CategoryTable } from "./dashboard/category/CategoryTable";
 export { default as CreateCategory } from "./dashboard/category/CreateCategory";

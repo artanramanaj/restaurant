@@ -229,3 +229,30 @@ export const getTotalUsers = asyncHandler(
     res.status(StatusCodes.OK).json({ total });
   },
 );
+
+export const updateUserRole = asyncHandler(
+  async (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    const user = await User.findById(id);
+
+    if (!user) {
+      throw new customError(
+        `User with id ${id} not found`,
+        StatusCodes.NOT_FOUND,
+      );
+    }
+
+    if (user.role === "admin") {
+      user.role = "user";
+    } else {
+      user.role = "admin";
+    }
+
+    await user.save();
+
+    res
+      .status(StatusCodes.OK)
+      .json({ message: `User role updated to ${user.role}` });
+  },
+);

@@ -8,6 +8,7 @@ import {
   updateUser,
   deleteUser,
   getTotalUsers,
+  updateUserRole,
 } from "../controllers/userController.js";
 import express from "express";
 import validate from "../middleware/validate.js";
@@ -29,4 +30,5 @@ router
   .get(protect, adminOnly, getUser)
   .put(protect, adminOnly, updateUser)
   .delete(protect, adminOnly, deleteUser);
+router.put("/:id/role", protect, adminOnly, updateUserRole);
 export default router;

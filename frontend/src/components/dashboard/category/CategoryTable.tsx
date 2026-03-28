@@ -38,7 +38,7 @@ const CategoryTable = ({ head, body }: Props) => {
     <div className="overflow-x-auto rounded-2xl  ">
       <table className="w-full text-sm text-left">
         <thead>
-          <tr className="bg-[#EB2327] text-white uppercase text-sm tracking-wider">
+          <tr className="bg-primary text-white uppercase text-sm tracking-wider">
             {head.map((h, idx) => (
               <th
                 key={idx}

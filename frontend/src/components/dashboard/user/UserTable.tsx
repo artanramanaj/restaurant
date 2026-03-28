@@ -1,9 +1,12 @@
-import { TableData } from "@/components";
-import { DeleteModal } from "@/components";
+import { TableData, DeleteModal, UpdateRoleModal } from "@/components";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { useDeleteUserMutation } from "@/store/userApiSlice";
+import {
+  useDeleteUserMutation,
+  useUpdateUserRoleMutation,
+} from "@/store/userApiSlice";
 import { Link } from "react-router-dom";
+
 type User = {
   _id: string;
   username: string;
@@ -22,11 +25,20 @@ type Props = {
 const UserTable = ({ head, body }: Props) => {
   const [show, setShow] = useState<boolean>(false);
   const [userId, setUserId] = useState<string>("");
+  const [showRoleModal, setShowRoleModal] = useState<boolean>(false); // ← new
+  const [roleUserId, setRoleUserId] = useState<string>(""); // ← new
   const [deleteUser, { isLoading }] = useDeleteUserMutation();
+  const [updateUserRole] = useUpdateUserRoleMutation(); // ← new
 
   const toggleModal = (id: string) => {
     setShow(true);
     setUserId(id);
+  };
+
+  const toggleRoleModal = (id: string) => {
+    // ← new
+    setShowRoleModal(true);
+    setRoleUserId(id);
   };
 
   const removeUser = async (id: string) => {
@@ -34,6 +46,17 @@ const UserTable = ({ head, body }: Props) => {
       const res = await deleteUser(id).unwrap();
       toast.success(res.message);
       setShow(false);
+    } catch (error: any) {
+      toast.error(error?.data?.message || "Something went wrong!");
+    }
+  };
+
+  const handleRoleUpdate = async (id: string) => {
+    // ← new
+    try {
+      const res = await updateUserRole(id).unwrap();
+      toast.success(res.message);
+      setShowRoleModal(false);
     } catch (error: any) {
       toast.error(error?.data?.message || "Something went wrong!");
     }
@@ -86,24 +109,37 @@ const UserTable = ({ head, body }: Props) => {
               />
               <td className="px-5 py-3">
                 <div className="flex items-center gap-2">
-                  <Link to={`/admin/users/edit/${user?._id}`}>
-                    <button className="text-sm bg-white/5 hover:bg-white/10 text-white  px-3 py-2 rounded-lg  font-medium">
-                      Edit
-                    </button>
-                  </Link>
+                  <button
+                    className="text-sm bg-blue-500/20 hover:bg-blue-500/40 text-primary-blue hover:text-white px-3 py-2 rounded-lg transition-all duration-200 font-medium"
+                    onClick={() => toggleRoleModal(user?._id)}
+                  >
+                    {user?.role === "admin" ? "Remove Admin" : "Make Admin"}
+                  </button>
 
                   <button
-                    className="text-sm bg-primary text-gray-300   hover:text-white  px-3 py-2 rounded-lg transition-all duration-200 font-medium"
+                    className="text-sm bg-primary text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-all duration-200 font-medium"
                     onClick={() => toggleModal(user?._id || "")}
                   >
                     Delete
                   </button>
+
                   <DeleteModal
                     id={userId || ""}
                     title="Delete User"
                     show={show}
                     onClose={() => setShow(false)}
                     onDelete={removeUser}
+                  />
+
+                  {/* ← new role confirmation modal */}
+                  <UpdateRoleModal
+                    id={roleUserId}
+                    show={showRoleModal}
+                    role={
+                      body.find((u) => u._id === roleUserId)?.role || "user"
+                    }
+                    onClose={() => setShowRoleModal(false)}
+                    onUpdate={handleRoleUpdate}
                   />
                 </div>
               </td>

@@ -39,6 +39,13 @@ const userApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Users"],
     }),
+    updateUserRole: builder.mutation({
+      query: (id) => ({
+        url: `/users/${id}/role`,
+        method: "PUT",
+      }),
+      invalidatesTags: ["Users"],
+    }),
     verifyUser: builder.mutation({
       query: (userData) => ({
         url: "/users/verify",
@@ -66,4 +73,5 @@ export const {
   useVerifyUserMutation,
   useGetUsersQuery,
   useDeleteUserMutation,
+  useUpdateUserRoleMutation,
 } = userApiSlice;

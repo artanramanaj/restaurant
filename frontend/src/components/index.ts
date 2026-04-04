@@ -69,3 +69,5 @@ export { default as EditCategoryNameField } from "./dashboard/category/EditCateg
 export { default as EditCategoryDescriptionField } from "./dashboard/category/EditCategory/CategoryDescriptionField";
 export { default as DashboardUsers } from "./DashboardUsers";
 export { default as UserTable } from "./dashboard/user/UserTable";
+export { default as DashboardOrders } from "./DashboardOrders";
+export { default as OrderTable } from "./dashboard/order/OrderTable";

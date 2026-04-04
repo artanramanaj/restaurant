@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useLogoutUserMutation } from "@/store/userApiSlice";
 import { Spinner, DropDown } from "@/components";
+import logo from "@/assets/images/logo.png";
+import logo2 from "@/assets/images/logo-2.png";
 const Header = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { userInfo } = useSelector((state: RootState) => state.auth);
@@ -27,8 +29,8 @@ const Header = () => {
   };
   if (isLoading) return <Spinner />;
   return (
-    <div className="container grid grid-cols-[1fr_5fr_1fr] py-6 items-center gap-4">
-      <h2>Logo</h2>
+    <div className="container grid grid-cols-[2fr_5fr_1fr] py-6 items-center gap-4">
+      <img className="w-full h-[128px] object-cover" src={logo} alt="logo" />
       <Navigation />
       <div className="flex gap-4 justify-end">
         {userInfo ? (

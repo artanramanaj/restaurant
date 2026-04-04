@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+
 type AddToCartModalProps = {
   hideModal: () => void;
   productImage: string;
   productName: string;
   productPrice: number;
-  productCategory: string;
+  productCategory: { name: string };
 };
+
 const AddToCartModal = ({
   hideModal,
   productImage,
@@ -16,77 +18,83 @@ const AddToCartModal = ({
 }: AddToCartModalProps) => {
   const [quantity, setQuantity] = useState<number>(1);
   const { t } = useTranslation();
-  const incrementQuantity = () => {
-    setQuantity((prev) => prev + 1);
-  };
-  const decrementQuantity = () => {
-    setQuantity((prev) => prev - 1);
-  };
+
   return (
-    <div className="fixed inset-0 bg-black/10 flex items-center justify-center z-50">
-      <div className="relative bg-white rounded-2xl w-full max-w-2/3  overflow-hidden ">
-        <div
-          className="absolute -top-1 right-1/2 flex h-10 w-10 translate-x-1/2 cursor-pointer items-center justify-center rounded-full bg-primary font-bold text-white hover:opacity-70 lg:top-2 lg:right-2 lg:translate-x-0"
+    <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
+      <div className="relative bg-light-red rounded-2xl w-full max-w-2/3 overflow-hidden shadow-2xl">
+        <button
           onClick={hideModal}
+          className="absolute top-3 left-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-primary text-white font-bold text-sm hover:opacity-75 transition-opacity"
         >
           X
-        </div>
-        {/* Row 1 - Two Columns */}
-        <div className="grid grid-cols-2 divide-x divide-gray-200 border-b border-gray-200 ">
-          <div className="p-6 ">
-            <img src={productImage} alt="product" />
+        </button>
+
+        <div className="grid grid-cols-2 border-b border-gray-100">
+          <div>
+            <img
+              src={productImage}
+              alt={productName}
+              className="w-full h-full aspect-square object-cover "
+            />
           </div>
-          <div className="w-full p-6 mr-5 flex flex-col items-start gap-4">
-            <div className="flex flex-col items-start">
-              <h2>{productName}</h2>
-              <h4 className="text-primary !font-bold">{productPrice}</h4>
-              <p>{productCategory.name}</p>
+
+          <div className="p-6 pl-4 flex flex-col justify-start gap-4">
+            {/* Name + price */}
+            <div>
+              <div className="flex items-start justify-between gap-2">
+                <h2 className="text-xl font-bold text-gray-900 leading-tight">
+                  {productName}
+                </h2>
+              </div>
+              <p className="text-sm text-gray-400 mt-1 leading-relaxed">
+                {productCategory.name}
+              </p>
             </div>
 
-            <div className="w-full flex flex-col items-start">
-              <h4 className="text-primary !font-bold">Madhesia</h4>
-              <p className=" !font-bold ">E vogel E mesme</p>
-            </div>
-
-            <div className="w-full flex flex-col items-start ">
-              <h4 className="text-primary !font-bold">Kerkesa shtese </h4>
+            {/* Extra request */}
+            <div className="flex flex-col gap-1.5">
+              <span className="text-[11px] font-bold tracking-widest uppercase text-gray-800">
+                Kerkesa Shtese
+              </span>
               <textarea
-                className="w-full mb-3 h-20  rounded-md border border-black bg-gray-50 p-2 outline-0"
-                name="extra"
-                id="extra"
-              ></textarea>
+                className="w-full border border-gray-200 rounded-xl bg-gray-50 p-2.5 text-sm text-gray-600 placeholder:text-gray-300 outline-none focus:border-primary resize-none transition-colors"
+                rows={4}
+                placeholder="Tell us your preferences (e.g., no mustard)..."
+              />
             </div>
-          </div>
-        </div>
 
-        {/* Row 2 - Single Column */}
-        <div className="p-6">
-          <p
-            className="
-          !text-3xl  mb-4"
-          >
-            Sasia
-          </p>
-          <div className="grid grid-cols-[1fr_5fr] items-center gap-4">
-            <div className=" flex items-center rounded-lg ">
-              <button
-                disabled={quantity <= 1}
-                className="px-4 py-2 !font-bold !text-xl    border-2 rounded-full border-primary text-primary"
-                onClick={decrementQuantity}
-              >
-                −
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-4 px-6 py-5">
+                <span className="text-base font-semibold text-gray-900 whitespace-nowrap">
+                  Sasia
+                </span>
+
+                <div className="flex items-center gap-2.5">
+                  <button
+                    disabled={quantity <= 1}
+                    onClick={() => setQuantity((p) => p - 1)}
+                    className="w-8 h-8 rounded-full border-2 border-primary text-primary font-bold text-lg flex items-center justify-center disabled:opacity-30 hover:opacity-75 transition-opacity"
+                  >
+                    −
+                  </button>
+                  <span className="text-lg font-semibold w-5 text-center">
+                    {quantity}
+                  </span>
+                  <button
+                    onClick={() => setQuantity((p) => p + 1)}
+                    className="w-8 h-8 rounded-full border-2 border-primary bg-primary text-white font-bold text-lg flex items-center justify-center hover:opacity-75 transition-opacity"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <button className="flex-1 flex items-center justify-center gap-2 bg-primary text-white rounded-full py-4 font-semibold text-sm hover:opacity-85 transition-all">
+                Add to Cart
               </button>
-              <h3 className="px-4  py-2 font-medium">{quantity}</h3>
-              <button
-                className="px-4 py-2 !font-bold !text-xl  border-2 rounded-full border-primary bg-primary text-white"
-                onClick={incrementQuantity}
-              >
-                +
-              </button>
+              <h2 className="text-primary whitespace-nowrap px-6 py-5">
+                {productPrice * quantity}€
+              </h2>
             </div>
-            <button className="w-full rounded-full border-2 border-primary bg-primary py-3 text-center text-white hover:opacity-70  transition-all duration-300 ease-in">
-              Add to Cart
-            </button>
           </div>
         </div>
       </div>

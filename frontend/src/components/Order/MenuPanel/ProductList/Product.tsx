@@ -40,7 +40,7 @@ const Product = ({ _id, image, name, price, category }: ProductProps) => {
       {isOpen && (
         <AddToCartModal
           hideModal={() => setIsOpen(false)}
-          productImage={image}
+          productImage={`${API_URL}/uploads/${image}`}
           productName={name}
           productPrice={price}
           productCategory={category}

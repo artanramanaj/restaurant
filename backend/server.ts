@@ -4,6 +4,7 @@ import express, { Request, Response } from "express";
 import mongoose from "mongoose";
 import productRouter from "./routes/productRoutes.js";
 import categoryRouter from "./routes/categoryRoutes.js";
+import orderRouter from "./routes/orderRoutes.js";
 import errorHandler from "./middleware/errorHandler.js";
 import userRouter from "./routes/userRoutes.js";
 import cookieParser from "cookie-parser";
@@ -14,15 +15,16 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cookieParser());
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
-// Connect to MongoDB
+
 mongoose
   .connect(process.env.MONGO_URI!)
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Connection failed:", err));
 
-app.use("/api/categories", categoryRouter);
-app.use("/api/products", productRouter);
 app.use("/api/users", userRouter);
+app.use("/api/categories", categoryRouter);
+app.use("/api/orders", orderRouter);
+app.use("/api/products", productRouter);
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello from TypeScript + Express!");
 });

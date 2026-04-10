@@ -56,6 +56,25 @@
   font-style: normal;
 }
 
+/* ===== Custom Scrollbar ===== */
+.custom-scrollbar {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: var(--color-primary) var(--color-extra-light-red);
+}
+
+/* Chrome, Edge, Safari */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: var(--color-extra-light-red);
+}
 /* ===== Global Font + Tailwind Theme ===== */
 @theme {
   --font-montserrat: "Montserrat", sans-serif;
@@ -63,7 +82,9 @@
   --color-secondary: #c41e21;
   --color-lightblack: #1a1a1a;
   --color-primary-blue: #155dfc;
-  --color-light-red: #ffd9dd;
+  --color-light-red: #ffeced;
+  --color-extra-light-red: #ffd9dd;
+  --color-primary-purple: #4d2128;
   --text-h1: 3rem; /* 48px */
   --text-h2: 2.25rem; /* 36px */
   --text-h3: 1.875rem; /* 30px */

@@ -28,6 +28,7 @@ import {
   EditCategoryScreen,
   DashboardUsersScreen,
   DashboardOrderScreen,
+  CheckoutScreen,
 } from "@/screens/index.ts";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
@@ -40,6 +41,7 @@ const router = createBrowserRouter(
       <Route path="/register" element={<RegisterScreen />} />
       <Route path="/verify" element={<VerifyScreen />} />
       <Route path="/login" element={<LoginScreen />} />
+      <Route path="/checkout" element={<CheckoutScreen />} />
       {/* private routes */}
       <Route element={<PrivateRoute />}>
         {/* <Route path="/profile" element={<ProfileScreen />} /> */}

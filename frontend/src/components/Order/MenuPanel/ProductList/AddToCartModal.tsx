@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/store/cartSlice";
 
 type AddToCartModalProps = {
   hideModal: () => void;
   productImage: string;
   productName: string;
   productPrice: number;
+  productId: string;
   productCategory: { name: string };
 };
 
@@ -14,10 +16,27 @@ const AddToCartModal = ({
   productImage,
   productName,
   productPrice,
+  productId,
   productCategory,
 }: AddToCartModalProps) => {
   const [quantity, setQuantity] = useState<number>(1);
-  const { t } = useTranslation();
+  const dispatch = useDispatch();
+  console.log(productId);
+  console.log(productPrice);
+  console.log(productName);
+  console.log(productCategory);
+  const addToCartFunc = () => {
+    dispatch(
+      addToCart({
+        _id: productId,
+        name: productName,
+        image: productImage,
+        price: productPrice,
+        quantity: quantity,
+      }),
+    );
+    hideModal();
+  };
 
   return (
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
@@ -34,12 +53,11 @@ const AddToCartModal = ({
             <img
               src={productImage}
               alt={productName}
-              className="w-full h-full aspect-square object-cover "
+              className="w-full h-full aspect-square object-cover"
             />
           </div>
 
           <div className="p-6 pl-4 flex flex-col justify-start gap-4">
-            {/* Name + price */}
             <div>
               <div className="flex items-start justify-between gap-2">
                 <h2 className="text-xl font-bold text-gray-900 leading-tight">
@@ -51,7 +69,6 @@ const AddToCartModal = ({
               </p>
             </div>
 
-            {/* Extra request */}
             <div className="flex flex-col gap-1.5">
               <span className="text-[11px] font-bold tracking-widest uppercase text-gray-800">
                 Kerkesa Shtese
@@ -68,7 +85,6 @@ const AddToCartModal = ({
                 <span className="text-base font-semibold text-gray-900 whitespace-nowrap">
                   Sasia
                 </span>
-
                 <div className="flex items-center gap-2.5">
                   <button
                     disabled={quantity <= 1}
@@ -88,7 +104,10 @@ const AddToCartModal = ({
                   </button>
                 </div>
               </div>
-              <button className="flex-1 flex items-center justify-center gap-2 bg-primary text-white rounded-full py-4 font-semibold text-sm hover:opacity-85 transition-all">
+              <button
+                className="flex-1 flex items-center justify-center gap-2 bg-primary text-white rounded-full py-4 font-semibold text-sm hover:opacity-85 transition-all"
+                onClick={addToCartFunc}
+              >
                 Add to Cart
               </button>
               <h2 className="text-primary whitespace-nowrap px-6 py-5">

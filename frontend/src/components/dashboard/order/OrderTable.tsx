@@ -1,7 +1,7 @@
 import { TableData } from "@/components";
-import { useState } from "react";
 import { toast } from "react-toastify";
 import { useUpdateOrderStatusMutation } from "@/store/ordersApiSlice";
+import { Link } from "react-router-dom";
 
 type OrderItem = {
   _id: string;
@@ -99,7 +99,7 @@ const OrderTable = ({ body }: Props) => {
               <TableData data={order?._id} />
 
               {/* Items */}
-              <td className="px-5 py-3">
+              {/* <td className="px-5 py-3">
                 <div className="flex flex-col gap-1">
                   {order.items.map((item) => (
                     <span key={item._id} className="text-gray-300 text-xs">
@@ -107,6 +107,12 @@ const OrderTable = ({ body }: Props) => {
                     </span>
                   ))}
                 </div>
+              </td> */}
+
+              <td className="px-5 py-3">
+                <span className="text-gray-300 text-xs ">
+                  {order.items.length}
+                </span>
               </td>
 
               <TableData data={`${order?.totalPrice}€`} />
@@ -160,25 +166,33 @@ const OrderTable = ({ body }: Props) => {
               />
 
               {/* Actions */}
-              <td className="px-5 py-3">
-                <select
-                  defaultValue={order.status}
-                  onChange={(e) =>
-                    handleStatusChange(order._id, e.target.value)
-                  }
-                  disabled={
-                    order.status === "delivered" ||
-                    order.status === "taken" ||
-                    order.status === "cancelled"
-                  }
-                  className="bg-[#242424] text-white text-xs border border-white/10 rounded-lg px-2 py-1.5 outline-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {availableStatuses.map((s) => (
-                    <option key={s} value={s} className="bg-[#242424]">
-                      {s}
-                    </option>
-                  ))}
-                </select>
+              <td className="px-5 py-3 text-center align-middle">
+                <div className="flex items-center justify-center gap-4">
+                  <select
+                    defaultValue={order.status}
+                    onChange={(e) =>
+                      handleStatusChange(order._id, e.target.value)
+                    }
+                    disabled={
+                      order.status === "delivered" ||
+                      order.status === "taken" ||
+                      order.status === "cancelled"
+                    }
+                    className="bg-[#242424] text-white text-xs border border-white/10 rounded-lg px-2 py-1.5 outline-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {availableStatuses.map((s) => (
+                      <option key={s} value={s} className="bg-[#242424]">
+                        {s}
+                      </option>
+                    ))}
+                  </select>
+                  <Link
+                    className="text-primary underline whitespace-nowrap"
+                    to={`/admin/orders/${order._id}`}
+                  >
+                    View
+                  </Link>
+                </div>
               </td>
             </tr>
           ))}

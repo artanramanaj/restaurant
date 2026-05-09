@@ -75,3 +75,4 @@ export { default as DashboardUsers } from "./DashboardUsers";
 export { default as UserTable } from "./dashboard/user/UserTable";
 export { default as DashboardOrders } from "./DashboardOrders";
 export { default as OrderTable } from "./dashboard/order/OrderTable";
+export { default as OrderDetails } from "./dashboard/order/OrderDetails";

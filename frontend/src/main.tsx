@@ -29,6 +29,7 @@ import {
   DashboardUsersScreen,
   DashboardOrderScreen,
   CheckoutScreen,
+  DashboardOrderDetailsScreen,
 } from "@/screens/index.ts";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
@@ -73,6 +74,10 @@ const router = createBrowserRouter(
         />
         <Route path="/admin/users" element={<DashboardUsersScreen />} />
         <Route path="/admin/orders" element={<DashboardOrderScreen />} />
+        <Route
+          path="/admin/orders/:id"
+          element={<DashboardOrderDetailsScreen />}
+        />
       </Route>
     </Route>,
   ),

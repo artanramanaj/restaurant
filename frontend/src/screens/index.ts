@@ -13,3 +13,4 @@ export { default as EditCategoryScreen } from "./dashboard/category/EditCategory
 export { default as DashboardUsersScreen } from "./dashboard/user/DashboardUsersScreen";
 export { default as DashboardOrderScreen } from "./dashboard/order/DashboardOrderScreen";
 export { default as CheckoutScreen } from "./CheckoutScreen";
+export { default as DashboardOrderDetailsScreen } from "./dashboard/order/DashboardOrderDetailsScreen";

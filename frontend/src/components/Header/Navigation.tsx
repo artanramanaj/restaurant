@@ -9,8 +9,8 @@ const Navigation = () => {
   };
 
   return (
-    <nav className=" flex justify-between gap-4 bg-primary rounded-3xl p-4 text-white">
-      <ul className="flex items-center gap-4">
+    <nav className="flex flex-col justify-between gap-4 rounded-3xl bg-primary p-4 text-white md:flex-row">
+      <ul className="flex flex-col gap-3 md:flex-row md:items-center md:gap-4">
         <li>
           <NavLink to="/">{t("nav.home")}</NavLink>
         </li>
@@ -28,7 +28,7 @@ const Navigation = () => {
         </li>
       </ul>
 
-      <div className="px-4 py-1 bg-white rounded flex items-center">
+      <div className="flex w-fit items-center rounded bg-white px-4 py-1">
         {i18n.language === "en" ? (
           <button onClick={() => changeLanguage("sq")}>
             <img src={albFlag} alt="albanian" />

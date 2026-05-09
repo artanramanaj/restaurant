@@ -1,22 +1,17 @@
 import { Link } from "react-router-dom";
-import { Navigation, DropDown } from "@/components";
+import { Navigation } from "@/components";
 import type { RootState } from "@/store/store";
 import { useSelector } from "react-redux";
-import type { Dispatch, SetStateAction } from "react";
 
 type MobileSideBarProps = {
   isOpen: boolean;
   onClose: () => void;
-  dropdownOpen: boolean;
-  setDropdownOpen: Dispatch<SetStateAction<boolean>>;
   handleLogout: () => Promise<void>;
 };
 
 const MobileSideBar = ({
   isOpen,
   onClose,
-  dropdownOpen,
-  setDropdownOpen,
   handleLogout,
 }: MobileSideBarProps) => {
   const { userInfo } = useSelector((state: RootState) => state.auth);
@@ -49,22 +44,28 @@ const MobileSideBar = ({
 
         <div className="flex flex-col gap-3">
           {userInfo ? (
-            <div className="relative w-fit">
+            <div className="flex flex-col gap-3">
+              <Link to="/profile" onClick={onClose}>
+                Profile
+              </Link>
+
+              {userInfo.role === "admin" && (
+                <Link to="/admin" onClick={onClose}>
+                  Admin
+                </Link>
+              )}
+
               <button
-                onClick={() => setDropdownOpen(!dropdownOpen)}
-                className="flex items-center gap-2"
+                onClick={async () => {
+                  await handleLogout();
+                  onClose();
+                }}
+                className="text-left text-primary"
               >
-                Hi, {userInfo.username}
-                <span className="text-xs">▼</span>
+                Logout
               </button>
 
-              {dropdownOpen && (
-                <DropDown
-                  userInfo={userInfo}
-                  setDropdownOpen={setDropdownOpen}
-                  handleLogout={handleLogout}
-                />
-              )}
+              <p className="pt-2 text-sm text-gray-600">Hi, {userInfo.username}</p>
             </div>
           ) : (
             <>

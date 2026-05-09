@@ -32,10 +32,10 @@ const Header = () => {
   if (isLoading) return <Spinner />;
   return (
     <>
-      <div className="container grid grid-cols-[1fr_auto] items-center gap-4 py-6 md:grid-cols-[2fr_5fr_1fr]">
-        <img className="h-[88px] w-auto object-cover md:h-[128px] md:w-full" src={logo} alt="logo" />
+      <div className="container grid grid-cols-2 items-center gap-4 py-2 md:py-6 md:grid-cols-[2fr_5fr_1fr]">
+        <img className="col-span-1 h-[120px] w-full object-cover md:h-[128px] md:w-full" src={logo} alt="logo" />
 
-        <div className="hidden md:block">
+        <div className="hidden col-span-1 md:block">
           <Navigation />
         </div>
 
@@ -78,8 +78,6 @@ const Header = () => {
       <MobileSideBar
         isOpen={mobileSidebarOpen}
         onClose={() => setMobileSidebarOpen(false)}
-        dropdownOpen={dropdownOpen}
-        setDropdownOpen={setDropdownOpen}
         handleLogout={handleLogout}
       />
     </>

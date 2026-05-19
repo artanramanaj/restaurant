@@ -41,84 +41,86 @@ const AddToCartModal = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
-      <div className="relative bg-light-red rounded-2xl w-full max-w-2/3 overflow-hidden shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 md:items-center md:p-4">
+      <div className="relative flex max-h-[100dvh] w-[90%] flex-col overflow-hidden rounded-t-2xl bg-light-red shadow-2xl md:max-h-[90vh] md:max-w-2/3 md:rounded-2xl">
         <button
           type="button"
           onClick={hideModal}
           aria-label={t("addToCartModal.close")}
-          className="absolute top-3 left-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-primary text-white font-bold text-sm hover:opacity-75 transition-opacity"
+          className="absolute top-3 left-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-primary text-sm font-bold text-white transition-opacity hover:opacity-75"
         >
           X
         </button>
 
-        <div className="grid grid-cols-2 border-b border-gray-100">
-          <div>
-            <img
-              src={productImage}
-              alt={translatedName}
-              className="w-full h-full aspect-square object-cover"
-            />
-          </div>
-
-          <div className="p-6 pl-4 flex flex-col justify-start gap-4">
-            <div>
-              <div className="flex items-start justify-between gap-2">
-                <h2 className="text-xl font-bold text-gray-900 leading-tight">
-                  {translatedName}
-                </h2>
-              </div>
-              <p className="text-sm text-gray-400 mt-1 leading-relaxed">
-                {t(`categories.${productCategory.name}`, {
-                  defaultValue: productCategory.name,
-                })}
-              </p>
-            </div>
-
-            <div className="flex flex-col gap-1.5">
-              <span className="text-[11px] font-bold tracking-widest uppercase text-gray-800">
-                {t("addToCartModal.extraRequest")}
-              </span>
-              <textarea
-                className="w-full border border-gray-200 rounded-xl bg-gray-50 p-2.5 text-sm text-gray-600 placeholder:text-gray-300 outline-none focus:border-primary resize-none transition-colors"
-                rows={4}
-                placeholder={t("addToCartModal.extraRequestPlaceholder")}
+        <div className="custom-scrollbar flex-1 overflow-y-auto pr-1">
+          <div className="flex flex-col md:grid md:grid-cols-2">
+            <div className="w-full shrink-0">
+              <img
+                src={productImage}
+                alt={translatedName}
+                className="aspect-square w-full object-cover"
               />
             </div>
 
-            <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-4 px-6 py-5">
-                <span className="text-base font-semibold text-gray-900 whitespace-nowrap">
-                  {t("addToCartModal.quantity")}
-                </span>
-                <div className="flex items-center gap-2.5">
-                  <button
-                    disabled={quantity <= 1}
-                    onClick={() => setQuantity((p) => p - 1)}
-                    className="w-8 h-8 rounded-full border-2 border-primary text-primary font-bold text-lg flex items-center justify-center disabled:opacity-30 hover:opacity-75 transition-opacity"
-                  >
-                    −
-                  </button>
-                  <span className="text-lg font-semibold w-5 text-center">
-                    {quantity}
-                  </span>
-                  <button
-                    onClick={() => setQuantity((p) => p + 1)}
-                    className="w-8 h-8 rounded-full border-2 border-primary bg-primary text-white font-bold text-lg flex items-center justify-center hover:opacity-75 transition-opacity"
-                  >
-                    +
-                  </button>
+            <div className="flex flex-col justify-start gap-4 p-4 pb-6 md:p-6 md:pl-4">
+              <div>
+                <div className="flex items-start justify-between gap-2">
+                  <h2 className="text-xl font-bold leading-tight text-gray-900">
+                    {translatedName}
+                  </h2>
                 </div>
+                <p className="mt-1 text-sm leading-relaxed text-gray-400">
+                  {t(`categories.${productCategory.name}`, {
+                    defaultValue: productCategory.name,
+                  })}
+                </p>
               </div>
-              <button
-                className="flex-1 flex items-center justify-center gap-2 bg-primary text-white rounded-full py-4 font-semibold text-sm hover:opacity-85 transition-all"
-                onClick={addToCartFunc}
-              >
-                {t("products.addToCart")}
-              </button>
-              <h2 className="text-primary whitespace-nowrap px-6 py-5">
-                {productPrice * quantity}€
-              </h2>
+
+              <div className="flex flex-col gap-1.5">
+                <span className="text-[11px] font-bold uppercase tracking-widest text-gray-800">
+                  {t("addToCartModal.extraRequest")}
+                </span>
+                <textarea
+                  className="w-full resize-none rounded-xl border border-gray-200 bg-gray-50 p-2.5 text-sm text-gray-600 outline-none transition-colors placeholder:text-gray-300 focus:border-primary"
+                  rows={4}
+                  placeholder={t("addToCartModal.extraRequestPlaceholder")}
+                />
+              </div>
+
+              <div className="flex flex-col gap-4">
+                <div className="flex items-center gap-4">
+                  <span className="whitespace-nowrap text-base font-semibold text-gray-900">
+                    {t("addToCartModal.quantity")}
+                  </span>
+                  <div className="flex items-center gap-2.5">
+                    <button
+                      disabled={quantity <= 1}
+                      onClick={() => setQuantity((p) => p - 1)}
+                      className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-primary text-lg font-bold text-primary transition-opacity hover:opacity-75 disabled:opacity-30"
+                    >
+                      −
+                    </button>
+                    <span className="w-5 text-center text-lg font-semibold">
+                      {quantity}
+                    </span>
+                    <button
+                      onClick={() => setQuantity((p) => p + 1)}
+                      className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-primary bg-primary text-lg font-bold text-white transition-opacity hover:opacity-75"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+                <button
+                  className="flex flex-1 items-center justify-center gap-2 rounded-full bg-primary py-4 text-sm font-semibold text-white transition-all hover:opacity-85"
+                  onClick={addToCartFunc}
+                >
+                  {t("products.addToCart")}
+                </button>
+                <h2 className="whitespace-nowrap text-primary">
+                  {productPrice * quantity}€
+                </h2>
+              </div>
             </div>
           </div>
         </div>

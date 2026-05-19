@@ -1,7 +1,7 @@
 import { MenuPanel, CartPanel } from "@/components/index";
 const Order = () => {
   return (
-    <div className="container grid grid-cols-[2fr_1fr] py-6 gap-4">
+    <div className="container flex flex-col-reverse gap-4 py-6 md:grid md:grid-cols-[2fr_1fr]">
       <MenuPanel /> <CartPanel />
     </div>
   );

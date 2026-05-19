@@ -1,4 +1,5 @@
 import { FiLock, FiEye, FiEyeOff } from "react-icons/fi";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import type { UseFormRegister, FieldErrors } from "react-hook-form";
 import type { LoginForm } from "@/validations/loginSchema";
@@ -17,9 +18,12 @@ const PasswordField = ({ register, errors }: Props) => {
         <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
           Password
         </label>
-        <span className="text-xs text-[#EB2327] hover:underline cursor-pointer font-medium">
+        <Link
+          to="/forget-password"
+          className="text-xs font-medium text-[#EB2327] hover:underline"
+        >
           Forgot password?
-        </span>
+        </Link>
       </div>
       <div
         className={`flex items-center bg-[#242424] border rounded-xl px-4 gap-3 focus-within:shadow-[0_0_0_3px_#EB232720] transition-all ${errors.password ? "border" : "border-white/10 focus-within:border-[#EB2327]"}`}

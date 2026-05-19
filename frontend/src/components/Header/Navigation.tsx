@@ -11,8 +11,8 @@ const Navigation = () => {
   };
 
   return (
-    <nav className=" flex justify-between gap-4 bg-primary rounded-3xl p-4 text-white">
-      <ul className="flex items-center gap-4">
+    <nav className="flex flex-col justify-between gap-4 rounded-3xl bg-primary p-4 text-white md:flex-row">
+      <ul className="flex flex-col gap-3 md:flex-row md:items-center md:gap-4">
         <li>
           <NavLink to="/">{t("nav.home")}</NavLink>
         </li>
@@ -23,7 +23,7 @@ const Navigation = () => {
           <button
             type="button"
             onClick={() => goToCartSection(navigate, pathname)}
-            className="hover:opacity-90 transition-opacity"
+            className="transition-opacity hover:opacity-90"
           >
             {t("nav.cart")}
           </button>
@@ -36,7 +36,7 @@ const Navigation = () => {
         </li>
       </ul>
 
-      <div className="px-4 py-1 bg-white rounded flex items-center gap-2 text-primary">
+      <div className="flex w-fit items-center gap-2 rounded bg-white px-4 py-1 text-primary">
         <button
           type="button"
           onClick={() => changeLanguage("en")}

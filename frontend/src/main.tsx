@@ -18,6 +18,7 @@ import {
   AboutScreen,
   RegisterScreen,
   LoginScreen,
+  ForgetPasswordScreen,
   VerifyScreen,
   DashboardScreen,
   DashboardProductsScreen,
@@ -42,6 +43,7 @@ const router = createBrowserRouter(
       <Route path="/register" element={<RegisterScreen />} />
       <Route path="/verify" element={<VerifyScreen />} />
       <Route path="/login" element={<LoginScreen />} />
+      <Route path="/forget-password" element={<ForgetPasswordScreen />} />
       <Route path="/checkout" element={<CheckoutScreen />} />
       {/* private routes */}
       <Route element={<PrivateRoute />}>

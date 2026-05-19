@@ -14,6 +14,17 @@ const resources = {
         jobs: "Jobs",
         contact: "Contact",
       },
+      dropdown: {
+        welcome: "Welcome",
+        profile: "Profile",
+        admin: "Admin",
+        logout: "Logout",
+      },
+      auth: {
+        login: "Login",
+        register: "Register",
+        logoutFailed: "Logout failed",
+      },
       banner: {
         heading: "Good Food. Good Mood.",
         description:
@@ -32,6 +43,13 @@ const resources = {
         bread: "bread",
         sandwich: "sandwich",
         salad: "salad",
+      },
+      addToCartModal: {
+        extraRequest: "Additional Request",
+        extraRequestPlaceholder:
+          "Tell us your preferences (e.g., no mustard)...",
+        quantity: "Quantity",
+        close: "Close",
       },
       products: {
         items: {
@@ -55,6 +73,17 @@ const resources = {
         noProducts: "No products in cart !",
         minimum: "Minimum order 5 euros",
       },
+      footer: {
+        description:
+          "Fresh flavors, quality ingredients, and warm hospitality — your neighborhood spot for pizza, doner, and more.",
+        menu: "Menu",
+        contact: "Contact",
+        followUs: "Follow Us",
+        socialHint: "Stay updated with our latest offers and news.",
+        location: "Rruga Dëshmorët e Kombit, Tirana, Albania",
+        phone: "+355 44 123 456",
+        rights: "All rights reserved.",
+      },
     },
   },
   sq: {
@@ -68,6 +97,17 @@ const resources = {
         cart: "Shporta",
         jobs: "Punë",
         contact: "Kontakt",
+      },
+      dropdown: {
+        welcome: "Mirë se vini",
+        profile: "Profili",
+        admin: "Admin",
+        logout: "Dilni",
+      },
+      auth: {
+        login: "Hyrje",
+        register: "Regjistrohu",
+        logoutFailed: "Dalja dështoi",
       },
       banner: {
         heading: "Ushqim i Mirë. Humor i Mirë.",
@@ -87,6 +127,13 @@ const resources = {
         bread: "samun",
         sandwich: "sanduiç",
         salad: "sallatë",
+      },
+      addToCartModal: {
+        extraRequest: "Kërkesa Shtesë",
+        extraRequestPlaceholder:
+          "Na tregoni preferencat tuaja (p.sh., pa musterd)...",
+        quantity: "Sasia",
+        close: "Mbyll",
       },
       products: {
         items: {
@@ -109,6 +156,17 @@ const resources = {
         heading: "Porosia juaj",
         noProducts: "Ska Produkte në Shportë",
         minimum: "Porosia minimale 5 euro",
+      },
+      footer: {
+        description:
+          "Shije të freskëta, përbërës cilësorë dhe mikpritje e ngrohtë — vendi juaj i preferuar për pica, doner dhe më shumë.",
+        menu: "Menu",
+        contact: "Kontakt",
+        followUs: "Na Ndiqni",
+        socialHint: "Qëndroni të informuar për ofertat dhe lajmet tona më të fundit.",
+        location: "Rruga Dëshmorët e Kombit, Tiranë, Shqipëri",
+        phone: "+355 44 123 456",
+        rights: "Të gjitha të drejtat e rezervuara.",
       },
     },
   },

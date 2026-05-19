@@ -1,8 +1,12 @@
 import { AddToCartModal } from "@/components/index";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import pizza from "@/assets/images/pizza.jpg";
+import placeholderImage from "@/assets/images/pizza.jpg";
 import { API_URL } from "@/config/api";
+
+const getProductImageSrc = (image: string) =>
+  image ? `${API_URL}/uploads/${image}` : placeholderImage;
+
 type Category = {
   _id: string;
   name: string;
@@ -20,13 +24,21 @@ type ProductProps = {
 
 const Product = ({ _id, image, name, price, category }: ProductProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [imgSrc, setImgSrc] = useState(() => getProductImageSrc(image));
   const { t } = useTranslation();
+
+  const handleImageError = () => {
+    setImgSrc((current) =>
+      current === placeholderImage ? current : placeholderImage,
+    );
+  };
   return (
     <div className="w-full">
       <img
         className="w-full aspect-square object-cover rounded"
-        src={`${API_URL}/uploads/${image}`}
+        src={imgSrc}
         alt={name}
+        onError={handleImageError}
       />
       <h5 className="mt-2 ml-3"> {t(`products.items.${_id}`)}</h5>
       <p className="mt-2 ml-3">{t(`categories.${category.name}`)}</p>
@@ -41,7 +53,7 @@ const Product = ({ _id, image, name, price, category }: ProductProps) => {
         <AddToCartModal
           hideModal={() => setIsOpen(false)}
           productId={_id}
-          productImage={`${API_URL}/uploads/${image}`}
+          productImage={imgSrc}
           productName={name}
           productPrice={price}
           productCategory={category}

@@ -5,8 +5,8 @@ const CartPanel = () => {
   const dispatch = useDispatch();
   const { items, totalPrice } = useSelector((state: RootState) => state.cart);
   return (
-    <section>
-      <div className="mt-10 rounded-3xl bg-light-red border-2 border-primary p-3 shadow-lg lg:mt-0 lg:p-8">
+    <section id="cart" className="scroll-mt-8">
+      <div className="mt-10 rounded-3xl border border-primary/15 bg-light-red p-3 shadow-lg lg:mt-0 lg:p-8">
         <CartHeading />
         {items.length === 0 ? <EmptyCart /> : <CartBody />}
       </div>

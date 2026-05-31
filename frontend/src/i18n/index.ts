@@ -30,6 +30,46 @@ const resources = {
         description:
           "Enjoy freshly prepared dishes made with quality ingredients and real care. Whether you’re here for a quick bite or a relaxed meal, we’re ready to serve food that brings people together.",
       },
+    about: {
+  storyButton: "Our Story",
+  title: "A Taste of Tradition",
+  description:
+    "For years we have been serving our community with recipes passed down through generations. Every dish is prepared with fresh ingredients and the same passion that started our kitchen.",
+  imageAlt: "Restaurant interior",
+  content: {
+    title: "The ZHURI Way",
+    description:
+      "At ZHURI, we believe that exceptional pizza is an art form that requires time, patience, and an uncompromising commitment to quality. Our journey begins with the dough.",
+    closing:
+      "Baked at 900 degrees in our custom-built wood-fired oven, the result is a crust that is perfectly blistered, airy, and deeply flavorful — a true modern artisanal experience.",
+  },
+  features: {
+    dop: {
+      title: "D.O.P. Certified",
+      description:
+        "We source only the finest D.O.P. ingredients directly from Italy. From the sun-ripened San Marzano tomatoes to the creamy Mozzarella di Bufala Campana.",
+    },
+    hours: {
+      title: "48 Hours",
+      description: "Slow fermentation process for the perfect crust.",
+    },
+  },
+  values: {
+  title: "Our Values",
+  sustainability: {
+    title: "Sustainability",
+    description: "We are committed to eco-friendly practices, from sourcing local ingredients to reducing waste in everything we do.",
+  },
+  quality: {
+    title: "Quality",
+    description: "Every ingredient is carefully selected and every dish crafted to the highest standard, because you deserve nothing less.",
+  },
+  community: {
+    title: "Community",
+    description: "We are more than a restaurant — we are a gathering place where neighbors become friends and every meal tells a story.",
+  },
+},
+},
       productSearch: {
         search: "Search Product ...",
       },
@@ -114,6 +154,46 @@ const resources = {
         description:
           "Shijoni pjata të përgatitura të freskëta me përbërës cilësorë dhe kujdes të veçantë. Qoftë për një vakt të shpejtë apo për një darkë të qetë, jemi këtu për t’ju ofruar ushqim që bashkon njerëzit.",
       },
+    about: {
+  storyButton: "Historia Jonë",
+  title: "Shija e Traditës",
+  description:
+    "Prej vitesh shërbejmë komunitetin tonë me receta të transmetuara brez pas brezi. Çdo pjatë përgatitet me përbërës të freskët dhe të njëjtin pasion që nisi kuzhinën tonë.",
+  imageAlt: "Ambienti i restorantit",
+  content: {
+    title: "Mënyra ZHURI",
+    description:
+      "Tek ZHURI, besojmë se pica e jashtëzakonshme është një formë arti që kërkon kohë, durim dhe një përkushtim të palëkundur ndaj cilësisë. Udhëtimi ynë fillon me brumin.",
+    closing:
+      "E pjekur në 900 gradë në furrën tonë me dru të ndërtuar me porosi, rezultati është një kore e fëshfëritur, e ajrosur dhe thellësisht e shijshme — një përvojë e vërtetë moderne artizanale.",
+  },
+  features: {
+    dop: {
+      title: "I Certifikuar D.O.P.",
+      description:
+        "Përdorim vetëm përbërësit më të mirë D.O.P. direkt nga Italia. Nga domatet San Marzano të pjekura në diell deri te Mozzarella di Bufala Campana kremoze.",
+    },
+    hours: {
+      title: "48 Orë",
+      description: "Procesi i fermentimit të ngadaltë për koren e përsosur.",
+    },
+  },
+  values: {
+  title: "Vlerat Tona",
+  sustainability: {
+    title: "Qëndrueshmëria",
+    description: "Jemi të përkushtuar ndaj praktikave miqësore me mjedisin, nga burimet lokale deri te reduktimi i mbetjeve në gjithçka që bëjmë.",
+  },
+  quality: {
+    title: "Cilësia",
+    description: "Çdo përbërës zgjidhet me kujdes dhe çdo pjatë përgatitet sipas standardit më të lartë, sepse ju meritoni më të mirën.",
+  },
+  community: {
+    title: "Komuniteti",
+    description: "Ne jemi më shumë se një restorant — jemi një vend takimi ku fqinjët bëhen miq dhe çdo vakt tregon një histori.",
+  },
+},
+},
       productSearch: {
         search: "Kërko produktin...",
       },

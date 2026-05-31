@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import { About } from "@/components/index";
 
 const AboutScreen = () => {
-  return (
-    <div className="container">
-      <h2>about</h2>
-    </div>
-  );
+  return  <About linkStoryButton={false} />;
+    
+
 };
 
 export default AboutScreen;

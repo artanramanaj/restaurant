@@ -32,6 +32,7 @@ import {
   CheckoutScreen,
   DashboardOrderDetailsScreen,
   ProfileScreen,
+  ContactScreen,
 } from "@/screens/index.ts";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
@@ -41,6 +42,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<HomeScreen />} />
       <Route path="/about" element={<AboutScreen />} />
+      <Route path="/contact" element={<ContactScreen />} />
       <Route path="/register" element={<RegisterScreen />} />
       <Route path="/verify" element={<VerifyScreen />} />
       <Route path="/login" element={<LoginScreen />} />

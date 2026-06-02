@@ -20,7 +20,6 @@ const AboutContent = () => {
         <h2 className="text-3xl md:text-4xl font-bold">{t("about.content.title")}</h2>
         <p className="text-gray-600 leading-relaxed">{t("about.content.description")}</p>
         <AboutFeatures />
-        <p className="text-gray-600 leading-relaxed">{t("about.content.closing")}</p>
       </div>
     </section>
   );

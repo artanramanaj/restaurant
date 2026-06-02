@@ -40,8 +40,7 @@ const resources = {
     title: "The ZHURI Way",
     description:
       "At ZHURI, we believe that exceptional pizza is an art form that requires time, patience, and an uncompromising commitment to quality. Our journey begins with the dough.",
-    closing:
-      "Baked at 900 degrees in our custom-built wood-fired oven, the result is a crust that is perfectly blistered, airy, and deeply flavorful — a true modern artisanal experience.",
+   
   },
   features: {
     dop: {
@@ -69,6 +68,44 @@ const resources = {
     description: "We are more than a restaurant — we are a gathering place where neighbors become friends and every meal tells a story.",
   },
 },
+},
+contact: {
+  title: "Contact Us",
+  description:
+    "Whether you have a question about our artisanal process, want to book a large party, or simply want to say ciao, we're here.",
+  checkboxItems: {
+    menu: "Questions about our menu or ingredients",
+    reservations: "Reservations for large groups or events",
+    feedback: "Feedback about your experience",
+    partnership: "Partnership or catering inquiries",
+  },
+  form: {
+    fullname: "Full Name",
+    fullnamePlaceholder: "John Doe",
+    mobile: "Mobile Number",
+    mobilePlaceholder: "+1 000 000 0000",
+    message: "Message",
+    messagePlaceholder: "Write your message here...",
+    submit: "Send Message",
+  },
+  details: {
+    title: "The Details",
+    locationTitle: "Roma Centrale",
+    locationAddress: "Via della Vite, 14 \n 00187 Roma RM, Italy",
+    phoneTitle: "Phone",
+    phoneNumber: "+39 06 1234 5678",
+    emailTitle: "Email",
+    emailAddress: "ciao@rossomoderno.it",
+  },
+  hours: {
+    title: "Service Hours",
+    mondayThursday: "Monday - Thursday",
+    mondayThursdayHours: "12:00 - 22:30",
+    fridaySaturday: "Friday - Saturday",
+    fridaySaturdayHours: "12:00 - 23:30",
+    sunday: "Sunday",
+    sundayHours: "13:00 - 22:00",
+  },
 },
       productSearch: {
         search: "Search Product ...",
@@ -164,8 +201,6 @@ const resources = {
     title: "Mënyra ZHURI",
     description:
       "Tek ZHURI, besojmë se pica e jashtëzakonshme është një formë arti që kërkon kohë, durim dhe një përkushtim të palëkundur ndaj cilësisë. Udhëtimi ynë fillon me brumin.",
-    closing:
-      "E pjekur në 900 gradë në furrën tonë me dru të ndërtuar me porosi, rezultati është një kore e fëshfëritur, e ajrosur dhe thellësisht e shijshme — një përvojë e vërtetë moderne artizanale.",
   },
   features: {
     dop: {
@@ -193,6 +228,44 @@ const resources = {
     description: "Ne jemi më shumë se një restorant — jemi një vend takimi ku fqinjët bëhen miq dhe çdo vakt tregon një histori.",
   },
 },
+},
+contact: {
+  title: "Na Kontaktoni",
+  description:
+    "Nëse keni një pyetje rreth procesit tonë artizanal, dëshironi të rezervoni për një grup të madh, ose thjesht dëshironi të thoni ciao, jemi këtu.",
+  checkboxItems: {
+    menu: "Pyetje rreth menusë ose përbërësve tanë",
+    reservations: "Rezervime për grupe të mëdha ose ngjarje",
+    feedback: "Komente rreth përvojës suaj",
+    partnership: "Pyetje për partneritet ose katering",
+  },
+  form: {
+    fullname: "Emri i Plotë",
+    fullnamePlaceholder: "Agim Berisha",
+    mobile: "Numri i Telefonit",
+    mobilePlaceholder: "+383 00 000 000",
+    message: "Mesazhi",
+    messagePlaceholder: "Shkruani mesazhin tuaj këtu...",
+    submit: "Dërgo Mesazhin",
+  },
+  details: {
+    title: "Detajet",
+    locationTitle: "Roma Centrale",
+    locationAddress: "Via della Vite, 14 \n 00187 Roma RM, Itali",
+    phoneTitle: "Telefoni",
+    phoneNumber: "+39 06 1234 5678",
+    emailTitle: "Email",
+    emailAddress: "ciao@rossomoderno.it",
+  },
+  hours: {
+    title: "Orët e Shërbimit",
+    mondayThursday: "E Hënë - E Enjte",
+    mondayThursdayHours: "12:00 - 22:30",
+    fridaySaturday: "E Premte - E Shtunë",
+    fridaySaturdayHours: "12:00 - 23:30",
+    sunday: "E Diel",
+    sundayHours: "13:00 - 22:00",
+  },
 },
       productSearch: {
         search: "Kërko produktin...",

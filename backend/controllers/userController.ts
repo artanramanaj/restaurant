@@ -185,6 +185,47 @@ export const getUser = asyncHandler(async (req: Request, res: Response) => {
   res.status(StatusCodes.OK).json(user);
 });
 
+export const updateProfile = asyncHandler(
+  async (req: Request, res: Response) => {
+    const userId = req.user?.id;
+
+    const user = await User.findById(userId).select("+password");
+
+    if (!user) {
+      throw new customError("User not found", StatusCodes.NOT_FOUND);
+    }
+
+    const { username, password } = req.body;
+
+    if (username) user.username = username;
+
+    if (password) {
+      user.password = await hashPassword(password);
+    }
+
+    await user.save();
+
+    const token = generateToken(user._id.toString(), user.username, user.role);
+
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+
+    res.status(StatusCodes.OK).json({
+      message: "Profile updated successfully",
+      user: {
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+        role: user.role,
+      },
+    });
+  },
+);
+
 export const updateUser = asyncHandler(async (req: Request, res: Response) => {
   const { id } = req.params;
 

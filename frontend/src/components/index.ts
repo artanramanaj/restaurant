@@ -25,6 +25,7 @@ export { default as CartBody } from "./Order/CartPanel/CartBody";
 export { default as CheckoutBtn } from "./Order/CartPanel/CheckoutBtn";
 export { default as TotalPrice } from "./Order/CartPanel/TotalPrice";
 export { default as Checkout } from "./Checkout";
+export { default as Profile } from "./Profile";
 export { default as PrivateRoute } from "./PrivateRoute";
 export { default as AdminRoute } from "./AdminRoute";
 export { default as WelcomeBack } from "./login/WelcomeBack";

@@ -6,6 +6,7 @@ import {
   getUsers,
   getUser,
   updateUser,
+  updateProfile,
   deleteUser,
   getTotalUsers,
   updateUserRole,
@@ -25,6 +26,7 @@ router.route("/total").get(protect, adminOnly, getTotalUsers);
 router.route("/verify").post(validate(verifySchema), verifyUser);
 router.route("/auth").post(validate(authSchema), authUser);
 router.route("/logout").post(logoutUser);
+router.route("/profile").put(protect, updateProfile);
 router
   .route("/:id")
   .get(protect, adminOnly, getUser)

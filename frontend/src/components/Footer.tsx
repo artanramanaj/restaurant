@@ -1,4 +1,4 @@
-import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
   FaFacebook,
@@ -34,11 +34,13 @@ const Footer = () => {
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           {/* Brand */}
           <div className="flex flex-col items-start">
-            <img
-              className="h-auto w-auto max-w-full object-contain"
-              src={blacklogo}
-              alt="Restaurant logo"
-            />
+            <Link to="/">
+              <img
+                className="h-auto w-auto max-w-2/3 object-contain"
+                src={blacklogo}
+                alt="Restaurant logo"
+              />
+            </Link>
           </div>
 
           {/* Menu */}

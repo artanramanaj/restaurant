@@ -36,11 +36,13 @@ const Header = () => {
   return (
     <>
       <div className="container grid grid-cols-2 items-center gap-4 py-2 md:grid-cols-[2fr_5fr_1fr] md:py-6">
-        <img
-          className="col-span-1 h-[120px] w-full object-cover md:h-[128px]"
-          src={logo}
-          alt="logo"
-        />
+        <Link to="/" className="col-span-1">
+          <img
+            className="h-[120px] w-full object-cover md:h-[128px]"
+            src={logo}
+            alt="logo"
+          />
+        </Link>
 
         <div className="col-span-1 hidden md:block">
           <Navigation />

@@ -15,3 +15,4 @@ export { default as DashboardUsersScreen } from "./dashboard/user/DashboardUsers
 export { default as DashboardOrderScreen } from "./dashboard/order/DashboardOrderScreen";
 export { default as CheckoutScreen } from "./CheckoutScreen";
 export { default as DashboardOrderDetailsScreen } from "./dashboard/order/DashboardOrderDetailsScreen";
+export { default as ProfileScreen } from "./ProfileScreen";

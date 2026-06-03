@@ -1,6 +1,7 @@
 import { FiLock, FiEye, FiEyeOff } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import type { UseFormRegister, FieldErrors } from "react-hook-form";
 import type { LoginForm } from "@/validations/loginSchema";
 
@@ -11,18 +12,18 @@ interface Props {
 
 const PasswordField = ({ register, errors }: Props) => {
   const [showPassword, setShowPassword] = useState(false);
-
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col gap-1.5">
       <div className="flex items-center justify-between">
         <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
-          Password
+        {t("login.password")}
         </label>
         <Link
           to="/forget-password"
           className="text-xs font-medium text-[#EB2327] hover:underline"
         >
-          Forgot password?
+           {t("login.forgotPassword")}
         </Link>
       </div>
       <div
@@ -32,7 +33,7 @@ const PasswordField = ({ register, errors }: Props) => {
         <input
           {...register("password")}
           type={showPassword ? "text" : "password"}
-          placeholder="Your password"
+          placeholder={t("login.passwordPlaceholder")}
           className="flex-1 bg-transparent py-3 text-sm text-white placeholder-gray-600 outline-none"
         />
         <button

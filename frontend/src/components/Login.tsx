@@ -7,7 +7,6 @@ import {
   WelcomeBack,
   EmailField,
   PasswordField,
-  GoogleButton,
   RegisterLink,
 } from "@/components";
 import { useNavigate } from "react-router";
@@ -15,13 +14,15 @@ import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../store/authSlice";
 import { loginSchema } from "@/validations/loginSchema";
-
+import { useTranslation } from "react-i18next";
 type LoginForm = z.infer<typeof loginSchema>;
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [authUser, { isLoading }] = useAuthUserMutation();
+const { t } = useTranslation();
+
 
   const {
     register,
@@ -60,9 +61,8 @@ const Login = () => {
             type="submit"
             className="w-full bg-primary hover:bg-[#c91e21] active:scale-[0.98] text-white font-semibold py-3.5 rounded-xl text-sm transition-all duration-200 mt-1 tracking-wide"
           >
-            Sign In
+            {t("login.signIn")}
           </button>
-          <GoogleButton />
           <RegisterLink />
         </form>
       </div>

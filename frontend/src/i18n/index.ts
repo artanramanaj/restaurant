@@ -80,6 +80,7 @@ contact: {
     partnership: "Partnership or catering inquiries",
   },
   form: {
+    title: "Send us a Message !",
     fullname: "Full Name",
     fullnamePlaceholder: "John Doe",
     mobile: "Mobile Number",
@@ -106,6 +107,43 @@ contact: {
     sunday: "Sunday",
     sundayHours: "13:00 - 22:00",
   },
+},
+login: {
+  welcomeBack: "Welcome Back",
+  signInToAccount: "Sign in to your account",
+  emailAddress: "Email Address",
+  emailPlaceholder: "john@example.com",
+
+  password: "Password",
+  passwordPlaceholder: "Your password",
+  forgotPassword: "Forgot password?",
+
+  signIn: "Sign In",
+
+  noAccount: "Don't have an account?",
+  createOne: "Create one",
+},
+register: {
+  title: "Create Account",
+  subtitle: "Start your culinary journey today",
+
+  username: "Username",
+  usernamePlaceholder: "johndoe",
+
+  emailAddress: "Email Address",
+  emailPlaceholder: "john@example.com",
+
+  password: "Password",
+  passwordPlaceholder: "Min. 8 characters",
+
+  confirmPassword: "Confirm Password",
+  confirmPasswordPlaceholder: "Repeat your password",
+
+  createAccount: "Create My Account",
+
+
+  alreadyHaveAccount: "Already have an account?",
+  signIn: "Sign In",
 },
       productSearch: {
         search: "Search Product ...",
@@ -240,6 +278,7 @@ contact: {
     partnership: "Pyetje për partneritet ose katering",
   },
   form: {
+    title:"Na dërgoni nje mesazh !",
     fullname: "Emri i Plotë",
     fullnamePlaceholder: "Agim Berisha",
     mobile: "Numri i Telefonit",
@@ -266,6 +305,43 @@ contact: {
     sunday: "E Diel",
     sundayHours: "13:00 - 22:00",
   },
+},
+login: {
+  welcomeBack: "Mirë se u rikthyet",
+  signInToAccount: "Hyni në llogarinë tuaj",
+  emailAddress: "Adresa e Email-it",
+  emailPlaceholder: "shembull@domain.com",
+
+  password: "Fjalëkalimi",
+  passwordPlaceholder: "Fjalëkalimi juaj",
+  forgotPassword: "Keni harruar fjalëkalimin?",
+
+  signIn: "Kyçu",
+
+  noAccount: "Nuk keni llogari?",
+  createOne: "Krijo një",
+},
+register: {
+  title: "Krijo Llogari",
+  subtitle: "Nis udhëtimin tuaj kulinar sot",
+
+  username: "Emri i Përdoruesit",
+  usernamePlaceholder: "agimberisha",
+
+  emailAddress: "Adresa e Email-it",
+  emailPlaceholder: "shembull@domain.com",
+
+  password: "Fjalëkalimi",
+  passwordPlaceholder: "Minimumi 8 karaktere",
+
+  confirmPassword: "Konfirmo Fjalëkalimin",
+  confirmPasswordPlaceholder: "Përsërit fjalëkalimin",
+
+  createAccount: "Krijo Llogarinë Time",
+
+
+  alreadyHaveAccount: "Keni tashmë një llogari?",
+  signIn: "Kyçu",
 },
       productSearch: {
         search: "Kërko produktin...",

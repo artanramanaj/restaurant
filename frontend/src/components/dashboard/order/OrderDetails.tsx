@@ -115,7 +115,7 @@ const OrderDetails = () => {
                         {item.name}
                       </span>
                       <span className="text-base font-bold text-red-600  ml-2 flex-shrink-0">
-                        ${(item.price * item.qty).toFixed(2)}
+                        ${(item.price * item.quantity).toFixed(2)}
                       </span>
                     </div>
                     {item.description && (

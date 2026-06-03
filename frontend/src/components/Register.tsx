@@ -6,20 +6,20 @@ import { registerSchema } from "@/validations/registerSchema";
 import { useRegisterUserMutation } from "@/store/userApiSlice";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import {
   Welcome,
   ConfirmPassword,
   Password,
   UserNameField,
   Email,
-  Divider,
-  GoogleButtonRegister,
   LoginLink,
   Spinner,
 } from "@/components";
 
 type RegisterForm = z.infer<typeof registerSchema>;
 const Register = () => {
+  const { t } = useTranslation();
   const [showConfirm, setShowConfirm] = useState<boolean>(false);
   const navigate = useNavigate();
   const [registerUser, { isLoading }] = useRegisterUserMutation();
@@ -69,12 +69,10 @@ const Register = () => {
             type="submit"
             className="w-full bg-primary hover:bg-primary active:scale-[0.98] text-white font-semibold py-3.5 rounded-xl text-sm transition-all duration-200 mt-1 tracking-wide"
           >
-            Create My Account
+            {t("register.createAccount")}
           </button>
 
-          <Divider />
 
-          <GoogleButtonRegister />
           <LoginLink />
         </form>
       </div>

@@ -28,12 +28,12 @@ const Checkout = () => {
     formState: { errors },
   } = useForm<FormValues>({
     defaultValues: {
-      orderType: "delivery",
+      orderType: "takeaway",
       street: "",
       city: "",
       phone: "",
     },
-    shouldUnregister: true,
+    // shouldUnregister: true,
   });
 
   const orderType = watch("orderType");
@@ -73,6 +73,7 @@ const Checkout = () => {
       onSubmit={handleSubmit(handlePlaceOrder)}
       className="min-h-screen bg-light-red py-12 px-4"
     >
+      <input type="hidden" {...register("orderType")} />
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="mb-10">
